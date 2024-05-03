@@ -1,20 +1,26 @@
 do_clean <- function() {
   # Load data
-  indat <- fread(file.path("data_derived", "sdg_3_1_2.csv"))
+  indat <- fread(file.path("data_derived", "sdg_14.csv"))
   mapping  <- fread(file.path("data_provided", "country-to-region-mapping.csv"))
   
   # Keep only the values that are either blank or 'A' under 'Observation Status', drop the rest
   indat <- indat[`[Observation Status]` == "" | `[Observation Status]` == "A"]
   
   # Replace '-' with '_' across all disaggregation values
-  cols_to_replace <- grep("\\[.*\\]", names(indat), value = TRUE)
+  cols_to_replace <- grep("\\[.*\\]",
+                          names(indat), 
+                          value = TRUE)
   indat[, (cols_to_replace) := lapply(.SD, function(x) gsub("-", "_", x)), 
         .SDcols = cols_to_replace]
   
-  # Assign UNFPA region
+  # select SIDS
   setkey(indat, GeoAreaName)
   setkey(mapping, country_or_area)
-  indat <- indat[mapping, UNFPA_region := i.unfpa_region_name]
+  
+  sids <- mapping[sids_region_code == 722]
+
+  van <- indat[GeoAreaName == "Vanuatu"]
+  # indat <- indat[mapping, UNFPA_region := i.unfpa_region_name]
   
   # Drop rows for non-UNFPA countries except for World and SDG regions
   indat <- indat[!(is.na(UNFPA_region) & !GeoAreaCode %in% mapping$`M49_Code`), ]
