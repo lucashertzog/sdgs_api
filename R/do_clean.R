@@ -1,25 +1,4 @@
-library(data.table)
-library(plotly)
-
-do_get_sdg_api <- function(
-    output = "data_derived/sdg_3_1_2.csv"
-){
-  # (Client URL) command line tool that enables data exchange between a device 
-  # and a server through a terminal
-  curl <- paste0(
-    'curl -X POST --header "Content-Type: application/x-www-form-urlencoded" ',
-    '--header "Accept: application/octet-stream" ',
-    '-d "seriesCodes=SH_STA_BRTC" ',
-    '"https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV" -o ', 
-    output)
-  
-  # Execute cURL
-  system(curl)
-}
-# Use the function to fetch data
-do_get_sdg_api()
-
-do_derive <- function() {
+do_clean <- function() {
   # Load data
   indat <- fread(file.path("data_derived", "sdg_3_1_2.csv"))
   mapping  <- fread(file.path("data_provided", "country-to-region-mapping.csv"))
@@ -78,19 +57,5 @@ do_derive <- function() {
   # Merge the regional and global averages
   final_data <- merge(regional_avg, global_avg, by = "TimePeriod", all = TRUE)
   
-  # Plot
-  plot <- final_data %>%
-    plot_ly(x = ~TimePeriod) %>%
-    add_trace(y = ~avg_value, color = ~UNFPA_region, ids = ~UNFPA_region, 
-              type = 'scatter', mode = 'lines', name = ~UNFPA_region) %>%
-    add_trace(y = ~global_avg, color = I("black"), name = "Global", 
-              type = 'scatter', mode = 'lines+markers') %>%
-    layout(title = paste0("Average proportion of births attended by skilled health personnel (SDG 3.1.2)"),
-           xaxis = list(title = "Year"),
-           yaxis = list(title = "Average Percentage"),
-           showlegend = TRUE)
-  
-  return(plot)
+  return(final_data)
 }
-
-do_derive()
