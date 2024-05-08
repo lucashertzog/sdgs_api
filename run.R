@@ -2,15 +2,21 @@ source("config.R")
 
 ### 1. Download ####
 # Use the function to download SDGs data
-do_get_sdg_api()
+# do_get_sdg_api()
 
 ### 2. Data cleaning ####
 # Function to clean the data downloaded
-do_clean()
+indat <- do_clean()
 
-### 3. Visualise ####
+### 3. Tabulating ####
+tab_aus <- do_tab_Australia()
+
+### 4. Visualise ####
 # Generate and interactive plot with the data cleaned
 do_plot()
+
+### 5. Map ####
+do_map()
 
 
 ### Resources ####

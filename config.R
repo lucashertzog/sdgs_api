@@ -1,17 +1,37 @@
 # packages
 
-if (!require(plotly)) {
-  install.packages("plotly")
-  library(plotly)
-}
-
 if (!require(data.table)) {
   install.packages("data.table")
   library(data.table)
 }
 
+if (!require(ggplot2)) {
+  install.packages("ggplot2")
+  library(ggplot2)
+}
+
+if (!require(sf)) {
+  install.packages("sf")
+  library(sf)
+}
+
+if (!require(RColorBrewer)) {
+  install.packages("RColorBrewer")
+  library(RColorBrewer)
+}
+
+if (!require(rnaturalearth)) {
+  install.packages("rnaturalearth")
+  library(rnaturalearth)
+}
+
+if (!require(rnaturalearthdata)) {
+  install.packages("rnaturalearthdata")
+  library(rnaturalearthdata)
+}
+
 ## set folder names
-folder_names <- c("data_derived", "data_provided")
+folder_names <- c("data_derived", "data_provided", "figures_and_tables")
 
 for (folder_name in folder_names) {
   if (!dir.exists(folder_name)) {
