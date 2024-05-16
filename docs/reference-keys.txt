@@ -1,3 +1,5 @@
 ocean-development-indicators-in-r
 training-objectives
+setup
+windows-users
 introduction
