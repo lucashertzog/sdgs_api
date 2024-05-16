@@ -7,7 +7,7 @@ documentclass: book
 description: "A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database."
 ---
 
-# Ocean Development Indicators in R
+# Welcome
 
 Welcome to the course on Ocean Development Indicators in R. This book provides all the necessary materials and instructions.
 

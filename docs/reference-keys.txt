@@ -1,5 +1,7 @@
-ocean-development-indicators-in-r
+welcome
 training-objectives
 setup
 windows-users
+create-a-github-account-sign-up
+setup-git-in-rstudio
 introduction
