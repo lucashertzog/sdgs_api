@@ -1,7 +1,7 @@
 ---
 title: "Ocean Development Indicators in R using the UN Global SDG Database"
 author: "Dr Lucas Hertzog"
-date: "`r Sys.Date()`"
+date: "2024-05-16"
 site: bookdown::bookdown_site
 documentclass: book
 description: "A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database."

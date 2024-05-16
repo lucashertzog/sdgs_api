@@ -2,9 +2,7 @@ bookdown::gitbook:
   css: style.css
   config:
     toc:
-      collapse: section
       before: |
-        <li><a href="./">R Training for Ocean Development</a></li>
-    edit: true
-    edit_text: Edit this page
-    edit_link: https://github.com/lucashertzog/DatSciTrain_SDGs_API/edit/main/%s
+        <li><a href="./">Global Dialogue R training</a></li>
+      # after: |
+      #   <li><a href="https://www.oceanaccounts.org/" target="blank">GOAP</a></li>
