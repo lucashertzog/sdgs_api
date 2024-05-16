@@ -13,3 +13,5 @@
 <https://github.com/>
 
 ### Setup Git in RStudio
+
+## Mac users

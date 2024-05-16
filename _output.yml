@@ -4,5 +4,5 @@ bookdown::gitbook:
     toc:
       before: |
         <li><a href="./">Global Dialogue R training</a></li>
-      # after: |
-      #   <li><a href="https://www.oceanaccounts.org/" target="blank">GOAP</a></li>
+      after: |
+         <li><a href="https://www.oceanaccounts.org/" target="blank">GOAP Website</a></li>
