@@ -1,0 +1,27 @@
+---
+title: "Ocean Development Indicators in R using the UN Global SDG Database"
+author: "Dr Lucas Hertzog"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+description: "A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database."
+---
+
+# Ocean Development Indicators in R
+
+Welcome to the course on Ocean Development Indicators in R. This book provides all the necessary materials and instructions.
+
+## Training Objectives
+
+- Learn to extract, clean, and analyse data from the UN Global SDG Database using R and the UNSD SDG API.
+- Provide foundational knowledge on interacting with GitHub using R within the workshop context.
+- Enable participants to build indicators informed by global standards but tailored to their specific contexts.
+
+## Necessary Resources
+
+- Presentation capabilities, projector, lectern and microphones.
+- Tables and chairs (round tables for 6 to 8 people).
+- Powerboards and extensions.
+- A4 Sheets (at least 4 per person).
+- Pens (at least 1 per person).
+- Laptops with R, RStudio, Git, GitHub account pre-installed.

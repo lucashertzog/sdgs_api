@@ -1,0 +1,15 @@
+Indicator,SeriesDescription,TimeRange,Source
+14.3.1,Average marine acidity (pH) measured at agreed suite of representative sampling stations,2010-2021,Intergovernmental Oceanographic Commission (IOC) of UNESCO
+14.5.1,Average proportion of Marine Key Biodiversity Areas (KBAs) covered by protected areas (%),2000-2023,"BirdLife International, IUCN and UNEP-WCMC (2021). Based on spatial overlap between polygons for Key Biodiversity Areas from the World Database of Key Biodiveristy Areas (www.keybiodiversityareas.org) and polygons for protected areas from the World Database on Protected Areas and (where available) for Other Effective area-based Conservation Measures and from the World Database on OECMs (www.protectedplanet.net)"
+14.1.1,Beach litter originating from national land-based sources that ends in the beach (%),2017-2021,Center for Ocean-Atmospheric Prediction Studies (COAPS)
+14.1.1,Beach litter originating from national land-based sources that ends in the beach (Tonnes),2017-2022,Center for Ocean-Atmospheric Prediction Studies (COAPS)
+14.1.1,Beach litter originating from national land-based sources that ends in the ocean (%),2017-2021,Center for Ocean-Atmospheric Prediction Studies (COAPS)
+14.1.1,Beach litter originating from national land-based sources that ends in the ocean (Tonnes),2017-2021,Center for Ocean-Atmospheric Prediction Studies (COAPS)
+14.1.1,Beach litter per square kilometer (Number),2015-2022,"Plastic Pollution (MLW, MDMAP, ICC)"
+14.1.1,"Chlorophyll-a deviations, remote sensing (%)",2005-2022,World Environment Situation Room
+14.1.1,Exported beach litter originating from national land-based sources (Tonnes),2017-2022,Center for Ocean-Atmospheric Prediction Studies (COAPS)
+14.a.1,National ocean science expenditure as a share of total research and development funding (%),2018-2021,Intergovernmental Oceanographic Commission (IOC) of UNESCO
+14.6.1,"Progress by countries in the degree of implementation of international instruments aiming to combat illegal, unreported and unregulated fishing (level of implementation: 1 lowest to 5 highest)",2018-2022,Questionnaire on the implementation of the Code of Conduct for Responsible Fisheries - Country self-reporting
+14.4.1,Proportion of fish stocks within biologically sustainable levels (not overexploited) (%),2018,Department of the Environment and Energy. at https://www.sdgdata.gov.au/goals/life-below-water/14.4.1 (page updated July 2020)
+14.c.1,Score for the implementation of UNCLOS and its two implementing agreements (%),2023,"Division for Ocean Affairs and the Law of the Sea, Office of Legal Affairs, United Nations Secretariat"
+14.c.1,Score for the ratification of and accession to UNCLOS and its two implementing agreements (%),2023,"Division for Ocean Affairs and the Law of the Sea, Office of Legal Affairs, United Nations Secretariat"

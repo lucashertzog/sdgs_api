@@ -1,1 +1,1 @@
-# DatSciTrain_SDGs_API
+# Ocean Development Indicators in R using the UN Global SDG Database
