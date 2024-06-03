@@ -49,6 +49,10 @@ foo3_map[, ValueFactor := cut(Value, breaks = c(0, 50, 69, 79, 89, 100),
                               include.lowest = TRUE, right = TRUE,
                               labels = c("0-50%", "51-69%", "70-79%", "80-89%", "90-100%"))]
 
+foo4 <- foo3_map[!is.na(foo3_map$Value)]
+foo5 <- foo4[, c("name", "Value", "Indicator", "TimePeriod", "SeriesDescription"), drop = FALSE]
+write.csv(foo5, "data_derived/sdg_14_unclos_map.csv", row.names = FALSE)
+
 foo3_map <- st_as_sf(foo3_map)
 
 equal_earth_projection <- st_crs("+proj=eqearth +datum=WGS84")
