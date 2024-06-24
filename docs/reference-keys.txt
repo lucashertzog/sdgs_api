@@ -5,4 +5,9 @@ windows-users
 create-a-github-account-sign-up
 setup-git-in-rstudio
 mac-users
-introduction
+create-a-github-account-sign-up-1
+github
+git-and-rstudio-interaction
+un-global-sdg-database
+api-web-interface
+r-interface-and-the-pipeline
