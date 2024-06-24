@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Ocean Development Indicators in R using the UN Global SDG Database</title>
+  <title>5 API Web Interface | Ocean Development Indicators in R using the UN Global SDG Database</title>
   <meta name="description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Ocean Development Indicators in R using the UN Global SDG Database" />
+  <meta property="og:title" content="5 API Web Interface | Ocean Development Indicators in R using the UN Global SDG Database" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Ocean Development Indicators in R using the UN Global SDG Database" />
+  <meta name="twitter:title" content="5 API Web Interface | Ocean Development Indicators in R using the UN Global SDG Database" />
   
   <meta name="twitter:description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="setup.html"/>
+<link rel="prev" href="un-global-sdg-database.html"/>
+<link rel="next" href="r-interface-and-the-pipeline.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -60,7 +60,6 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -73,9 +72,6 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Global Dialogue R training</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#training-objectives"><i class="fa fa-check"></i><b>1.1</b> Training Objectives</a></li>
@@ -87,11 +83,18 @@
 <li class="chapter" data-level="2.1.1" data-path="setup.html"><a href="setup.html#create-a-github-account-sign-up"><i class="fa fa-check"></i><b>2.1.1</b> Create a GitHub account (sign up)</a></li>
 <li class="chapter" data-level="2.1.2" data-path="setup.html"><a href="setup.html#setup-git-in-rstudio"><i class="fa fa-check"></i><b>2.1.2</b> Setup Git in RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#mac-users"><i class="fa fa-check"></i><b>2.2</b> Mac users</a></li>
+<li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#mac-users"><i class="fa fa-check"></i><b>2.2</b> Mac users</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#create-a-github-account-sign-up-1"><i class="fa fa-check"></i><b>2.2.1</b> Create a GitHub account (sign up)</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>3</b> Introduction</a></li>
-<li class="divider"></li>
-<li><a href="https://www.oceanaccounts.org/" target="blank">GOAP Website</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>3</b> GitHub</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="github.html"><a href="github.html#git-and-rstudio-interaction"><i class="fa fa-check"></i><b>3.1</b> Git and RStudio interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="un-global-sdg-database.html"><a href="un-global-sdg-database.html"><i class="fa fa-check"></i><b>4</b> UN Global SDG Database</a></li>
+<li class="chapter" data-level="5" data-path="api-web-interface.html"><a href="api-web-interface.html"><i class="fa fa-check"></i><b>5</b> API Web Interface</a></li>
+<li class="chapter" data-level="6" data-path="r-interface-and-the-pipeline.html"><a href="r-interface-and-the-pipeline.html"><i class="fa fa-check"></i><b>6</b> R Interface and the pipeline</a></li>
 </ul>
 
       </nav>
@@ -109,31 +112,17 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Ocean Development Indicators in R using the UN Global SDG Database</h1>
-<p class="author"><em>Dr Lucas Hertzog</em></p>
-<p class="date"><em>2024-06-04</em></p>
-</div>
-<div id="welcome" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Welcome<a href="index.html#welcome" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Welcome to the course on Ocean Development Indicators in R. This book provides all the necessary materials and instructions.</p>
-<div id="training-objectives" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Training Objectives<a href="index.html#training-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Learn to extract, clean, and analyse data from the UN Global SDG Database using R and the UNSD SDG API.</li>
-<li>Provide foundational knowledge on interacting with GitHub using R within the workshop context.</li>
-<li>Enable participants to build indicators informed by global standards but tailored to their specific contexts.</li>
-</ul>
+<div id="api-web-interface" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> API Web Interface<a href="api-web-interface.html#api-web-interface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="setup.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="un-global-sdg-database.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-interface-and-the-pipeline.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
