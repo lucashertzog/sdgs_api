@@ -26,4 +26,5 @@ Paste that in a macOS Terminal:
 4. Install Git using Homebrew:
 ```$ brew install git```
 
+### Create a GitHub account (sign up)
 
