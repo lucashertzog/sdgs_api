@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 GitHub | Ocean Development Indicators in R using the UN Global SDG Database</title>
+  <title>5 GitHub | Ocean Development Indicators in R using the UN Global SDG Database</title>
   <meta name="description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 GitHub | Ocean Development Indicators in R using the UN Global SDG Database" />
+  <meta property="og:title" content="5 GitHub | Ocean Development Indicators in R using the UN Global SDG Database" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 GitHub | Ocean Development Indicators in R using the UN Global SDG Database" />
+  <meta name="twitter:title" content="5 GitHub | Ocean Development Indicators in R using the UN Global SDG Database" />
   
   <meta name="twitter:description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="setup.html"/>
-<link rel="next" href="un-global-sdg-database.html"/>
+<link rel="prev" href="api-web-interface.html"/>
+<link rel="next" href="the-pipeline.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -92,13 +92,18 @@
 <li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#create-a-github-account-sign-up-1"><i class="fa fa-check"></i><b>2.2.1</b> Create a GitHub account (sign up)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>3</b> GitHub</a>
+<li class="chapter" data-level="3" data-path="un-global-sdg-database.html"><a href="un-global-sdg-database.html"><i class="fa fa-check"></i><b>3</b> UN Global SDG Database</a></li>
+<li class="chapter" data-level="4" data-path="api-web-interface.html"><a href="api-web-interface.html"><i class="fa fa-check"></i><b>4</b> API Web Interface</a></li>
+<li class="chapter" data-level="5" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>5</b> GitHub</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="github.html"><a href="github.html#git-and-rstudio-interaction"><i class="fa fa-check"></i><b>3.1</b> Git and RStudio interaction</a></li>
+<li class="chapter" data-level="5.1" data-path="github.html"><a href="github.html#git-and-rstudio-interaction"><i class="fa fa-check"></i><b>5.1</b> Git and RStudio interaction</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="un-global-sdg-database.html"><a href="un-global-sdg-database.html"><i class="fa fa-check"></i><b>4</b> UN Global SDG Database</a></li>
-<li class="chapter" data-level="5" data-path="api-web-interface.html"><a href="api-web-interface.html"><i class="fa fa-check"></i><b>5</b> API Web Interface</a></li>
-<li class="chapter" data-level="6" data-path="r-interface-and-the-pipeline.html"><a href="r-interface-and-the-pipeline.html"><i class="fa fa-check"></i><b>6</b> R Interface and the pipeline</a></li>
+<li class="chapter" data-level="6" data-path="the-pipeline.html"><a href="the-pipeline.html"><i class="fa fa-check"></i><b>6</b> The pipeline</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="the-pipeline.html"><a href="the-pipeline.html#basic-data-management-and-folder-structure"><i class="fa fa-check"></i><b>6.1</b> Basic data management and folder structure</a></li>
+<li class="chapter" data-level="6.2" data-path="the-pipeline.html"><a href="the-pipeline.html#config.r"><i class="fa fa-check"></i><b>6.2</b> config.R</a></li>
+<li class="chapter" data-level="6.3" data-path="the-pipeline.html"><a href="the-pipeline.html#do_get_sdg_api.r"><i class="fa fa-check"></i><b>6.3</b> do_get_sdg_api.R</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://www.oceanaccounts.org/" target="blank">GOAP Website</a></li>
 </ul>
@@ -118,8 +123,8 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="github" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> GitHub<a href="github.html#github" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="github" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> GitHub<a href="github.html#github" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>GitHub is a developer platform that allows developers to create, store, manage and share their code.</p>
 <ul>
 <li>Why GitHub?
@@ -129,9 +134,9 @@
 <li>Sharing work in various programming languages.</li>
 </ul></li>
 </ul>
-<div id="git-and-rstudio-interaction" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Git and RStudio interaction<a href="github.html#git-and-rstudio-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can connect Git and RStudio and share our work without leaving the RStudio environment. After installing R, RStudio, and Git, now it’s time to enable the version control for RStudio Projects.</p>
+<div id="git-and-rstudio-interaction" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Git and RStudio interaction<a href="github.html#git-and-rstudio-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can connect Git and RStudio and share our work without leaving the RStudio environment. After installing R, RStudio, and Git and setting up an account on GitHub, it’s time to enable version control for RStudio Projects.</p>
 
 </div>
 </div>
@@ -140,8 +145,8 @@
           </div>
         </div>
       </div>
-<a href="setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="un-global-sdg-database.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="api-web-interface.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-pipeline.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

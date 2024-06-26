@@ -6,8 +6,11 @@ create-a-github-account-sign-up
 setup-git-in-rstudio
 mac-users
 create-a-github-account-sign-up-1
-github
-git-and-rstudio-interaction
 un-global-sdg-database
 api-web-interface
-r-interface-and-the-pipeline
+github
+git-and-rstudio-interaction
+the-pipeline
+basic-data-management-and-folder-structure
+config.r
+do_get_sdg_api.r

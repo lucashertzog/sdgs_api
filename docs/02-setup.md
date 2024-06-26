@@ -28,3 +28,6 @@ Paste that in a macOS Terminal:
 
 ### Create a GitHub account (sign up)
 
+<https://github.com/>
+
+

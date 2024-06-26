@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Setup | Ocean Development Indicators in R using the UN Global SDG Database</title>
+  <title>6 The pipeline | Ocean Development Indicators in R using the UN Global SDG Database</title>
   <meta name="description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Setup | Ocean Development Indicators in R using the UN Global SDG Database" />
+  <meta property="og:title" content="6 The pipeline | Ocean Development Indicators in R using the UN Global SDG Database" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Setup | Ocean Development Indicators in R using the UN Global SDG Database" />
+  <meta name="twitter:title" content="6 The pipeline | Ocean Development Indicators in R using the UN Global SDG Database" />
   
   <meta name="twitter:description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="un-global-sdg-database.html"/>
+<link rel="prev" href="github.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -123,39 +123,119 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setup" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> Setup<a href="setup.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="windows-users" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Windows users<a href="setup.html#windows-users" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Download and install R: <a href="https://cran.r-project.org/bin/windows/base/R-4.4.0-win.exe" class="uri">https://cran.r-project.org/bin/windows/base/R-4.4.0-win.exe</a></p></li>
-<li><p>Download and install RStudio: <a href="https://download1.rstudio.org/electron/windows/RStudio-2024.04.1-748.exe" class="uri">https://download1.rstudio.org/electron/windows/RStudio-2024.04.1-748.exe</a></p></li>
-<li><p>Download and install Git: <a href="https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/Git-2.45.1-64-bit.exe" class="uri">https://github.com/git-for-windows/git/releases/download/v2.45.1.windows.1/Git-2.45.1-64-bit.exe</a></p></li>
-</ol>
-<div id="create-a-github-account-sign-up" class="section level3 hasAnchor" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Create a GitHub account (sign up)<a href="setup.html#create-a-github-account-sign-up" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><a href="https://github.com/" class="uri">https://github.com/</a></p>
+<div id="the-pipeline" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> The pipeline<a href="the-pipeline.html#the-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li>RStudio Environment. Let’s rearrange the panel layout:</li>
+</ul>
+<div class="float">
+<img src="images/img_panel00.png" alt="Tools&gt;Global Options…" />
+<div class="figcaption">Tools&gt;Global Options…</div>
 </div>
-<div id="setup-git-in-rstudio" class="section level3 hasAnchor" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Setup Git in RStudio<a href="setup.html#setup-git-in-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="float">
+<img src="images/img_panel01.png" alt="Pane Layout" />
+<div class="figcaption">Pane Layout</div>
 </div>
+<div id="basic-data-management-and-folder-structure" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Basic data management and folder structure<a href="the-pipeline.html#basic-data-management-and-folder-structure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>├── config.R
+├── data_derived
+│   ├── Australia_SDG_14.csv
+│   ├── sdg_14.csv
+│   ├── sdg_14_unclos_map.csv
+│   └── sdg_3_1_2.csv
+├── data_provided
+│   ├── country-to-region-mapping.csv
+│   ├── Ocean Accounts Diagnostic Tool_formatted.pdf
+│   ├── SDG-DSD-Guidelines.pdf
+│   ├── SDG.xlsx
+│   └── SDG_Updateinfo.xlsx
+├── DatSciTrain_SDGs_API_R.Rproj
+├── figures_and_tables
+│   ├── fig2.png
+│   └── sdg14_Australia.docx
+├── LICENSE
+├── R
+│   ├── do_clean.R
+│   ├── do_get_sdg_api.R
+│   ├── do_map.R
+│   ├── do_plot.R
+│   └── do_tab_Australia.R
+├── README.md
+└── run.R</code></pre>
 </div>
-<div id="mac-users" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Mac users<a href="setup.html#mac-users" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Download and install R: <a href="https://cran.r-project.org/bin/macosx/big-sur-arm64/base/R-4.4.0-arm64.pkg" class="uri">https://cran.r-project.org/bin/macosx/big-sur-arm64/base/R-4.4.0-arm64.pkg</a></p></li>
-<li><p>Download and install RStudio: <a href="https://download1.rstudio.org/electron/macos/RStudio-2024.04.1-748.dmg" class="uri">https://download1.rstudio.org/electron/macos/RStudio-2024.04.1-748.dmg</a></p></li>
-<li><p>Install Homebrew:
-Paste that in a macOS Terminal:
-<code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></p></li>
-<li><p>Install Git using Homebrew:
-<code>$ brew install git</code></p></li>
-</ol>
-<div id="create-a-github-account-sign-up-1" class="section level3 hasAnchor" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Create a GitHub account (sign up)<a href="setup.html#create-a-github-account-sign-up-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><a href="https://github.com/" class="uri">https://github.com/</a></p>
+<div id="config.r" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> config.R<a href="the-pipeline.html#config.r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code># packages
 
+if (!require(data.table)) {
+  install.packages(&quot;data.table&quot;)
+  library(data.table)
+}
+
+if (!require(ggplot2)) {
+  install.packages(&quot;ggplot2&quot;)
+  library(ggplot2)
+}
+
+if (!require(sf)) {
+  install.packages(&quot;sf&quot;)
+  library(sf)
+}
+
+if (!require(RColorBrewer)) {
+  install.packages(&quot;RColorBrewer&quot;)
+  library(RColorBrewer)
+}
+
+if (!require(rnaturalearth)) {
+  install.packages(&quot;rnaturalearth&quot;)
+  library(rnaturalearth)
+}
+
+if (!require(rnaturalearthdata)) {
+  install.packages(&quot;rnaturalearthdata&quot;)
+  library(rnaturalearthdata)
+}
+
+## set folder names
+folder_names &lt;- c(&quot;data_derived&quot;, &quot;data_provided&quot;, &quot;figures_and_tables&quot;)
+
+for (folder_name in folder_names) {
+  if (!dir.exists(folder_name)) {
+    dir.create(folder_name)
+    cat(&quot;Folder&quot;, folder_name, &quot;created.\n&quot;)
+  } else {
+    cat(&quot;Folder&quot;, folder_name, &quot;already exists.\n&quot;)
+  }
+}
+
+## source functions
+file_list &lt;- list.files(path = &quot;R&quot;, pattern = &quot;\\.R$&quot;, full.names = TRUE)
+
+# Source each .R file
+for (file in file_list) {
+  source(file)
+}</code></pre>
 </div>
+<div id="do_get_sdg_api.r" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> do_get_sdg_api.R<a href="the-pipeline.html#do_get_sdg_api.r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>do_get_sdg_api &lt;- function(
+    output = &quot;data_derived/sdg_14.csv&quot;
+){
+  # (Client URL) command line tool that enables data exchange between a device 
+  # and a server through a terminal
+  curl &lt;- paste0(
+    &#39;curl -X POST --header &quot;Content-Type: application/x-www-form-urlencoded&quot; &#39;,
+    &#39;--header &quot;Accept: application/octet-stream&quot; &#39;,
+    &#39;-d &quot;goal=14&quot; &#39;,
+    &#39;&quot;https://unstats.un.org/sdgapi/v1/sdg/Goal/DataCSV&quot; -o&#39;, 
+    output)
+  
+  # Execute cURL
+  system(curl)
+}</code></pre>
+
 </div>
 </div>
             </section>
@@ -163,8 +243,8 @@ Paste that in a macOS Terminal:
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="un-global-sdg-database.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="github.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

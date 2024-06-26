@@ -9,4 +9,4 @@ GitHub is a developer platform that allows developers to create, store, manage a
 
 ## Git and RStudio interaction
 
-We can connect Git and RStudio and share our work without leaving the RStudio environment. After installing R, RStudio, and Git, now it's time to enable the version control for RStudio Projects.
+We can connect Git and RStudio and share our work without leaving the RStudio environment. After installing R, RStudio, and Git and setting up an account on GitHub, it's time to enable version control for RStudio Projects.
