@@ -8,11 +8,11 @@ editor_options:
 
 -   RStudio Environment. Let's rearrange the panel layout:
 
-![Tools>Global Options...](images/img_panel00.png)
+![Tools\>Global Options...](images/img_panel00.png)
 
 ![Pane Layout](images/img_panel01.png)
 
-## Basic data management and folder structure
+## Essential data management and folder structure
 
 ```         
 ├── config.R
@@ -44,7 +44,7 @@ editor_options:
 
 ## config.R
 
-```
+```         
 # packages
 
 if (!require(data.table)) {
@@ -100,7 +100,7 @@ for (file in file_list) {
 
 ## run.R
 
-```
+```         
 source("config.R")
 
 ### 1. Download ####
@@ -143,7 +143,8 @@ do_get_sdg_api <- function(
 ```
 
 ## do_clean
-```
+
+```         
 do_clean <- function() {
   # options(scipen = 1000)
   # Load data
