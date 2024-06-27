@@ -14,7 +14,7 @@ editor_options:
 
 ## Essential data management and folder structure
 
-```         
+``` sh
 ├── config.R
 ├── data_derived
 │   ├── Australia_SDG_14.csv
@@ -44,7 +44,7 @@ editor_options:
 
 ## config.R
 
-```         
+```{r}
 # packages
 
 if (!require(data.table)) {
@@ -100,7 +100,7 @@ for (file in file_list) {
 
 ## run.R
 
-```         
+```{r}         
 source("config.R")
 
 ### 1. Download ####
@@ -124,7 +124,7 @@ do_map()
 
 ## do_get_sdg_api
 
-```         
+```{r}         
 do_get_sdg_api <- function(
     output = "data_derived/sdg_14.csv"
 ){
@@ -144,7 +144,7 @@ do_get_sdg_api <- function(
 
 ## do_clean
 
-```         
+```{r}         
 do_clean <- function() {
   # options(scipen = 1000)
   # Load data
@@ -164,8 +164,9 @@ do_clean <- function() {
 }
 ```
 
-## do_tab_country
-```
+## do_tab_country 
+
+``` {r}        
 do_tab_country <- function(
     indat,
     country
@@ -217,7 +218,8 @@ return(unq)
 ```
 
 ## do_plot
-```
+
+``` {r}        
 do_plot <- function(){
 
   # Subset the data to only include rows where the Indicator is "14.7.1"
@@ -277,7 +279,8 @@ return(p)
 ```
 
 ## do_map
-```
+
+``` {r}        
 do_map <- function()
 {
 # United Nations Convention on the Law of the Sea (UNCLOS)
@@ -357,4 +360,3 @@ ggsave("figures_and_tables/fig_map.png", plot = p, width = 10, height = 6, dpi =
 
 }
 ```
-

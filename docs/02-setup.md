@@ -20,9 +20,27 @@
 
 2.  Download and install RStudio: <https://download1.rstudio.org/electron/macos/RStudio-2024.04.2-764.dmg>
 
-3.  Install Homebrew: Paste that in a macOS Terminal: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+3.  Download and install Homebrew:
 
-4.  Install Git using Homebrew: `$ brew install git`
+    i.  Option 1: <https://github.com/Homebrew/brew/releases/download/4.3.7/Homebrew-4.3.7.pkg>
+
+        OR
+
+    ii. Option 2: Paste that in a macOS Terminal:
+
+    ``` sh
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+4.  Install Git using Homebrew
+
+    i.  Open the Terminal application. You can find it by searching for "Terminal" in Spotlight (Cmd + Space) or by navigating to `Applications` -\> `Utilities` -\> `Terminal`.
+
+    ii. In the Terminal, type the following command and press Enter:
+
+``` sh
+brew install git
+```
 
 ### Create a GitHub account (sign up)
 
