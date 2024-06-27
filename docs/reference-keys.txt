@@ -1,4 +1,5 @@
 welcome
+context
 training-objectives
 setup
 windows-users

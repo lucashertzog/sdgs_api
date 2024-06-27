@@ -1,8 +1,24 @@
 bookdown::gitbook:
   css: style.css
+  includes:
+    in_header: header.html
   config:
     toc:
       before: |
         <li><a href="./">Global Dialogue R training</a></li>
+          <li><a href="https://www.oceanaccounts.org/" target="blank">
+          <img src="https://www.oceanaccounts.org/content/images/2022/02/GOAP-logo.png" alt="GOAP" style="width:89px;height:30px;">
+        </a></li>
       after: |
-         <li><a href="https://www.oceanaccounts.org/" target="blank">GOAP Website</a></li>
+        <li style="text-align: center;">Contact me:</li>
+        <li style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+          <a href="https://www.linkedin.com/in/lucashertzog/" target="_blank">
+            <i class="fab fa-linkedin" style="font-size: 20px;"></i>
+          </a>
+          <a href="https://scholar.google.com/citations?user=I-neNC0AAAAJ&hl=en&authuser=1" target="_blank">
+            <i class="ai ai-google-scholar" style="font-size: 20px;"></i>
+          </a>
+          <a href="https://orcid.org/0000-0001-9881-3648" target="_blank">
+            <i class="ai ai-orcid" style="font-size: 20px;"></i>
+          </a>
+        </li>
