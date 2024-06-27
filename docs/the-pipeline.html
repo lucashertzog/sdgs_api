@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="github.html"/>
-
+<link rel="next" href="useful-links-and-resources.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -92,18 +92,25 @@
 <li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#create-a-github-account-sign-up-1"><i class="fa fa-check"></i><b>2.2.1</b> Create a GitHub account (sign up)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="un-global-sdg-database.html"><a href="un-global-sdg-database.html"><i class="fa fa-check"></i><b>3</b> UN Global SDG Database</a></li>
+<li class="chapter" data-level="3" data-path="global-sdg-indicators-database-and-metadata-repository.html"><a href="global-sdg-indicators-database-and-metadata-repository.html"><i class="fa fa-check"></i><b>3</b> Global SDG Indicators Database and Metadata Repository</a></li>
 <li class="chapter" data-level="4" data-path="api-web-interface.html"><a href="api-web-interface.html"><i class="fa fa-check"></i><b>4</b> API Web Interface</a></li>
 <li class="chapter" data-level="5" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>5</b> GitHub</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="github.html"><a href="github.html#git-and-rstudio-interaction"><i class="fa fa-check"></i><b>5.1</b> Git and RStudio interaction</a></li>
+<li class="chapter" data-level="5.1" data-path="github.html"><a href="github.html#git-and-rstudio-interaction"><i class="fa fa-check"></i><b>5.1</b> Git and RStudio interaction</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="github.html"><a href="github.html#enable-version-control"><i class="fa fa-check"></i><b>5.1.1</b> Enable version control</a></li>
+<li class="chapter" data-level="5.1.2" data-path="github.html"><a href="github.html#start-a-new-project"><i class="fa fa-check"></i><b>5.1.2</b> Start a new project</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="the-pipeline.html"><a href="the-pipeline.html"><i class="fa fa-check"></i><b>6</b> The pipeline</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="the-pipeline.html"><a href="the-pipeline.html#basic-data-management-and-folder-structure"><i class="fa fa-check"></i><b>6.1</b> Basic data management and folder structure</a></li>
+<li class="chapter" data-level="6.1" data-path="the-pipeline.html"><a href="the-pipeline.html#essential-data-management-and-folder-structure"><i class="fa fa-check"></i><b>6.1</b> Essential data management and folder structure</a></li>
 <li class="chapter" data-level="6.2" data-path="the-pipeline.html"><a href="the-pipeline.html#config.r"><i class="fa fa-check"></i><b>6.2</b> config.R</a></li>
-<li class="chapter" data-level="6.3" data-path="the-pipeline.html"><a href="the-pipeline.html#do_get_sdg_api.r"><i class="fa fa-check"></i><b>6.3</b> do_get_sdg_api.R</a></li>
+<li class="chapter" data-level="6.3" data-path="the-pipeline.html"><a href="the-pipeline.html#run.r"><i class="fa fa-check"></i><b>6.3</b> run.R</a></li>
+<li class="chapter" data-level="6.4" data-path="the-pipeline.html"><a href="the-pipeline.html#do_get_sdg_api.r"><i class="fa fa-check"></i><b>6.4</b> do_get_sdg_api.R</a></li>
+<li class="chapter" data-level="6.5" data-path="the-pipeline.html"><a href="the-pipeline.html#do_clean"><i class="fa fa-check"></i><b>6.5</b> do_clean</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="useful-links-and-resources.html"><a href="useful-links-and-resources.html"><i class="fa fa-check"></i><b>7</b> Useful links and resources</a></li>
 <li class="divider"></li>
 <li><a href="https://www.oceanaccounts.org/" target="blank">GOAP Website</a></li>
 </ul>
@@ -136,8 +143,8 @@
 <img src="images/img_panel01.png" alt="Pane Layout" />
 <div class="figcaption">Pane Layout</div>
 </div>
-<div id="basic-data-management-and-folder-structure" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Basic data management and folder structure<a href="the-pipeline.html#basic-data-management-and-folder-structure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="essential-data-management-and-folder-structure" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Essential data management and folder structure<a href="the-pipeline.html#essential-data-management-and-folder-structure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <pre><code>├── config.R
 ├── data_derived
 │   ├── Australia_SDG_14.csv
@@ -218,8 +225,30 @@ for (file in file_list) {
   source(file)
 }</code></pre>
 </div>
-<div id="do_get_sdg_api.r" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> do_get_sdg_api.R<a href="the-pipeline.html#do_get_sdg_api.r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="run.r" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> run.R<a href="the-pipeline.html#run.r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>source(&quot;config.R&quot;)
+
+### 1. Download ####
+# Use the function to download SDGs data
+do_get_sdg_api()
+
+### 2. Data cleaning ####
+# Function to clean the data downloaded
+indat &lt;- do_clean()
+
+### 3. Tabulating ####
+tab &lt;- do_tab_country(indat, country = &quot;Indonesia&quot;)
+
+### 4. Visualise ####
+# Generate and interactive plot with the data cleaned
+do_plot()
+
+### 5. Map ####
+do_map()</code></pre>
+</div>
+<div id="do_get_sdg_api.r" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> do_get_sdg_api.R<a href="the-pipeline.html#do_get_sdg_api.r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <pre><code>do_get_sdg_api &lt;- function(
     output = &quot;data_derived/sdg_14.csv&quot;
 ){
@@ -235,6 +264,26 @@ for (file in file_list) {
   # Execute cURL
   system(curl)
 }</code></pre>
+</div>
+<div id="do_clean" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> do_clean<a href="the-pipeline.html#do_clean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>do_clean &lt;- function() {
+  # options(scipen = 1000)
+  # Load data
+  indat &lt;- fread(file.path(&quot;data_derived&quot;, &quot;sdg_14.csv&quot;))
+  # mapping  &lt;- fread(file.path(&quot;data_provided&quot;, &quot;country-to-region-mapping.csv&quot;))
+  
+  # Keep only the values that are either blank or &#39;A&#39; under &#39;Observation Status&#39;, drop the rest
+  indat &lt;- indat[`[Observation Status]` == &quot;&quot; | `[Observation Status]` == &quot;A&quot;]
+  
+  # Replace &#39;-&#39; with &#39;_&#39; across all disaggregation values
+  cols_to_replace &lt;- grep(&quot;\\[.*\\]&quot;,
+                          names(indat), 
+                          value = TRUE)
+  indat[, (cols_to_replace) := lapply(.SD, function(x) gsub(&quot;-&quot;, &quot;_&quot;, x)), 
+        .SDcols = cols_to_replace]
+  return(indat)
+}</code></pre>
 
 </div>
 </div>
@@ -243,8 +292,8 @@ for (file in file_list) {
           </div>
         </div>
       </div>
-<a href="github.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="github.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="useful-links-and-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

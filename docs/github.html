@@ -92,18 +92,25 @@
 <li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#create-a-github-account-sign-up-1"><i class="fa fa-check"></i><b>2.2.1</b> Create a GitHub account (sign up)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="un-global-sdg-database.html"><a href="un-global-sdg-database.html"><i class="fa fa-check"></i><b>3</b> UN Global SDG Database</a></li>
+<li class="chapter" data-level="3" data-path="global-sdg-indicators-database-and-metadata-repository.html"><a href="global-sdg-indicators-database-and-metadata-repository.html"><i class="fa fa-check"></i><b>3</b> Global SDG Indicators Database and Metadata Repository</a></li>
 <li class="chapter" data-level="4" data-path="api-web-interface.html"><a href="api-web-interface.html"><i class="fa fa-check"></i><b>4</b> API Web Interface</a></li>
 <li class="chapter" data-level="5" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>5</b> GitHub</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="github.html"><a href="github.html#git-and-rstudio-interaction"><i class="fa fa-check"></i><b>5.1</b> Git and RStudio interaction</a></li>
+<li class="chapter" data-level="5.1" data-path="github.html"><a href="github.html#git-and-rstudio-interaction"><i class="fa fa-check"></i><b>5.1</b> Git and RStudio interaction</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="github.html"><a href="github.html#enable-version-control"><i class="fa fa-check"></i><b>5.1.1</b> Enable version control</a></li>
+<li class="chapter" data-level="5.1.2" data-path="github.html"><a href="github.html#start-a-new-project"><i class="fa fa-check"></i><b>5.1.2</b> Start a new project</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="the-pipeline.html"><a href="the-pipeline.html"><i class="fa fa-check"></i><b>6</b> The pipeline</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="the-pipeline.html"><a href="the-pipeline.html#basic-data-management-and-folder-structure"><i class="fa fa-check"></i><b>6.1</b> Basic data management and folder structure</a></li>
+<li class="chapter" data-level="6.1" data-path="the-pipeline.html"><a href="the-pipeline.html#essential-data-management-and-folder-structure"><i class="fa fa-check"></i><b>6.1</b> Essential data management and folder structure</a></li>
 <li class="chapter" data-level="6.2" data-path="the-pipeline.html"><a href="the-pipeline.html#config.r"><i class="fa fa-check"></i><b>6.2</b> config.R</a></li>
-<li class="chapter" data-level="6.3" data-path="the-pipeline.html"><a href="the-pipeline.html#do_get_sdg_api.r"><i class="fa fa-check"></i><b>6.3</b> do_get_sdg_api.R</a></li>
+<li class="chapter" data-level="6.3" data-path="the-pipeline.html"><a href="the-pipeline.html#run.r"><i class="fa fa-check"></i><b>6.3</b> run.R</a></li>
+<li class="chapter" data-level="6.4" data-path="the-pipeline.html"><a href="the-pipeline.html#do_get_sdg_api.r"><i class="fa fa-check"></i><b>6.4</b> do_get_sdg_api.R</a></li>
+<li class="chapter" data-level="6.5" data-path="the-pipeline.html"><a href="the-pipeline.html#do_clean"><i class="fa fa-check"></i><b>6.5</b> do_clean</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="useful-links-and-resources.html"><a href="useful-links-and-resources.html"><i class="fa fa-check"></i><b>7</b> Useful links and resources</a></li>
 <li class="divider"></li>
 <li><a href="https://www.oceanaccounts.org/" target="blank">GOAP Website</a></li>
 </ul>
@@ -137,7 +144,41 @@
 <div id="git-and-rstudio-interaction" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Git and RStudio interaction<a href="github.html#git-and-rstudio-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can connect Git and RStudio and share our work without leaving the RStudio environment. After installing R, RStudio, and Git and setting up an account on GitHub, it’s time to enable version control for RStudio Projects.</p>
+<div id="enable-version-control" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Enable version control<a href="github.html#enable-version-control" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="float">
+<img src="images/img_panel00.png" alt="Tools&gt;Global Options…" />
+<div class="figcaption">Tools&gt;Global Options…</div>
+</div>
+<div class="float">
+<img src="images/img_git_version01.png" alt="GIT/SVN" />
+<div class="figcaption">GIT/SVN</div>
+</div>
+</div>
+<div id="start-a-new-project" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Start a new project<a href="github.html#start-a-new-project" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="float">
+<img src="images/img_new_project00.png" alt="New project" />
+<div class="figcaption">New project</div>
+</div>
+<div class="float">
+<img src="images/img_new_project01.png" alt="Choose version control" />
+<div class="figcaption">Choose version control</div>
+</div>
+<div class="float">
+<img src="images/img_new_project02.png" alt="Choose Git" />
+<div class="figcaption">Choose Git</div>
+</div>
+<div class="float">
+<img src="images/img_new_project03.png" alt="Copy the projects’ link" />
+<div class="figcaption">Copy the projects’ link</div>
+</div>
+<div class="float">
+<img src="images/img_new_project04.png" alt="Insert link, check name and where to save in your computer. Click Create Project" />
+<div class="figcaption">Insert link, check name and where to save in your computer. Click Create Project</div>
+</div>
 
+</div>
 </div>
 </div>
             </section>

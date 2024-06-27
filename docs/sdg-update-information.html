@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 SDG Update Information | Ocean Development Indicators in R using the UN Global SDG Database</title>
+  <meta name="description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 SDG Update Information | Ocean Development Indicators in R using the UN Global SDG Database" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 SDG Update Information | Ocean Development Indicators in R using the UN Global SDG Database" />
+  
+  <meta name="twitter:description" content="A comprehensive guide on using R to extract, clean, and analyse data from the UN Global SDG Database." />
+  
+
+<meta name="author" content="Dr Lucas Hertzog" />
+
+
+<meta name="date" content="2024-06-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="global-sdg-indicators-database-and-metadata-repository.html"/>
+<link rel="next" href="api-web-interface.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Global Dialogue R training</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#training-objectives"><i class="fa fa-check"></i><b>1.1</b> Training Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="setup.html"><a href="setup.html#windows-users"><i class="fa fa-check"></i><b>2.1</b> Windows users</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="setup.html"><a href="setup.html#create-a-github-account-sign-up"><i class="fa fa-check"></i><b>2.1.1</b> Create a GitHub account (sign up)</a></li>
+<li class="chapter" data-level="2.1.2" data-path="setup.html"><a href="setup.html#setup-git-in-rstudio"><i class="fa fa-check"></i><b>2.1.2</b> Setup Git in RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="setup.html"><a href="setup.html#mac-users"><i class="fa fa-check"></i><b>2.2</b> Mac users</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="setup.html"><a href="setup.html#create-a-github-account-sign-up-1"><i class="fa fa-check"></i><b>2.2.1</b> Create a GitHub account (sign up)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="global-sdg-indicators-database-and-metadata-repository.html"><a href="global-sdg-indicators-database-and-metadata-repository.html"><i class="fa fa-check"></i><b>3</b> Global SDG Indicators Database and Metadata Repository</a></li>
+<li class="chapter" data-level="4" data-path="sdg-update-information.html"><a href="sdg-update-information.html"><i class="fa fa-check"></i><b>4</b> SDG Update Information</a></li>
+<li class="chapter" data-level="5" data-path="api-web-interface.html"><a href="api-web-interface.html"><i class="fa fa-check"></i><b>5</b> API Web Interface</a></li>
+<li class="chapter" data-level="6" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>6</b> GitHub</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="github.html"><a href="github.html#git-and-rstudio-interaction"><i class="fa fa-check"></i><b>6.1</b> Git and RStudio interaction</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="github.html"><a href="github.html#enable-version-control"><i class="fa fa-check"></i><b>6.1.1</b> Enable version control</a></li>
+<li class="chapter" data-level="6.1.2" data-path="github.html"><a href="github.html#start-a-new-project"><i class="fa fa-check"></i><b>6.1.2</b> Start a new project</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="the-pipeline.html"><a href="the-pipeline.html"><i class="fa fa-check"></i><b>7</b> The pipeline</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="the-pipeline.html"><a href="the-pipeline.html#essential-data-management-and-folder-structure"><i class="fa fa-check"></i><b>7.1</b> Essential data management and folder structure</a></li>
+<li class="chapter" data-level="7.2" data-path="the-pipeline.html"><a href="the-pipeline.html#config.r"><i class="fa fa-check"></i><b>7.2</b> config.R</a></li>
+<li class="chapter" data-level="7.3" data-path="the-pipeline.html"><a href="the-pipeline.html#run.r"><i class="fa fa-check"></i><b>7.3</b> run.R</a></li>
+<li class="chapter" data-level="7.4" data-path="the-pipeline.html"><a href="the-pipeline.html#do_get_sdg_api.r"><i class="fa fa-check"></i><b>7.4</b> do_get_sdg_api.R</a></li>
+<li class="chapter" data-level="7.5" data-path="the-pipeline.html"><a href="the-pipeline.html#do_clean"><i class="fa fa-check"></i><b>7.5</b> do_clean</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="useful-links-and-resources.html"><a href="useful-links-and-resources.html"><i class="fa fa-check"></i><b>8</b> Useful links and resources</a></li>
+<li class="divider"></li>
+<li><a href="https://www.oceanaccounts.org/" target="blank">GOAP Website</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Ocean Development Indicators in R using the UN Global SDG Database</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sdg-update-information" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> SDG Update Information<a href="sdg-update-information.html#sdg-update-information" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<table>
+<caption><span id="tab:unnamed-chunk-1">Table 4.1: </span>Global SDG Indicators Database</caption>
+<colgroup>
+<col width="10%" />
+<col width="89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Update History of the Global SDG Indicators Database and Metadata Repository</th>
+<th align="left">…2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Last updated:</td>
+<td align="left">45436</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Date</td>
+<td align="left">Description</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">45436</td>
+<td align="left">Revision to the 2024 Q1 Update. See the sheets named “Data Updates” and “Metadata Updates” for details.</td>
+</tr>
+</tbody>
+</table>
+<p>SDMX API was updated.
+SDGAnalytics was updated. |
+|45379 |2024 Q1 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates”, “Metadata Updates” and “Special Notes” for details.
+SDMX API was updated.
+SDGAnalytics was updated. |
+|45322 |Metadata updated for several indicators. See “Metadata Updates” sheet for details. |
+|45282 |SDMX API was updated (corrected some disemination issues). |
+|45275 |2023 Q4 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates”, “Metadata Updates” and “Special Notes” for details.
+SDMX API was updated.
+SDGAnalytics was updated. |
+|45245 |Revision to the 2023 Q3 Update. See the sheets named “Data Updates” for details.
+SDMX API was updated.
+SDGAnalytics was updated. |
+|45208 |Metadata updated for 7.1.2 indicator. See “Metadata Updates” sheet for details. |
+|45198 |2023 Q3 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Special Notes” for details.
+SDMX API was updated.
+SDGAnalytics was updated. |
+|45181 |Revision to the 2023 Q2 Update. See the sheets named “Data Updates”, “Metadata Updates” and “Special Notes” for details.
+SDMX API was updated.
+SDGAnalytics was updated. |
+|45125 |Metadata updated for several indicators. See “Metadata Updates” sheet for details. |
+|45117 |2023 Q2 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates”, “Metadata Updates” and “Special Notes” for details. |
+|17 May 223 |Revision to the 2023 Q1 Update. See the sheets named “Data Updates” and “Metadata Updates” for details. SDGAnalytics was updated. SDMX API was updated. |
+|15 May 223 |Revision to the 2023 Q1 Update. See the sheets named “Data Updates” and “Metadata Updates” for details. SDGAnalytics was updated. |
+|1-2 April 2023 |SDMX API was updated (1 April 2023).
+SDGAnalytics was updated (2 April 2023). |
+|45016 |2023 Q1 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates”, “Metadata Updates” and “Special Notes” for details. |
+|44950 |Metadata updated for several indicators. See “Metadata Updates” sheet for details. |
+|19-21 Dec 2022 |Revision to the 2022 Q4 Update (19 Dec 2022). See the sheets named “Data Updates” and “Metadata Updates” for details.
+SDMX API was updated.
+SDGAnalytics was updated (21 Dec 2022). |
+|44911 |2022 Q4 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates”, “Metadata Updates” and “Special Notes” for details. |
+|44887 |Metadata updated for several indicators. See “Metadata Updates” sheet for details. |
+|44851 |Revision to the 2022 Q3 Update. See the sheet named “Data Updates” for details. SDGAnalytics was updated. |
+|44838 |SDMX API was updated; SDGAnalytics was updated.
+Revision to the 2022 Q3 Update. See the sheets named “Data Updates” for details. |
+|44834 |2022 Q3 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates”, “Metadata Updates” and “Special Notes” for details. SDGAnalytics was also updated. |
+|44826 |Metadata updated for indicator 15.4.2. See “Metadata Updates” sheet for details. |
+|44785 |Revision to the 2022 Q2 Update. See the sheets named “Data Updates” and “Metadata Updates” for details. SDGAnalytics was updated. |
+|44749 |2022 Q2 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates”, “Metadata Updates” and “Special Notes” for details. SDGAnalytics was also updated. |
+|44707 |Revision to the 2022 Q1 Update. See the sheet named “Data Updates” for details. SDGAnalytics was updated. |
+|44699 |Metadata updated for several indicators. See “Metadata Updates” sheet for details. |
+|44684 |New metadata for indicator 17.3.1. See “Metadata Updates” sheet for details. |
+|44663 |SDMX API was updated; SDGAnalytics was updated.
+Revision to the 2022 Q1 Update. See the sheets named “Data Updates”, “Metadata Updates” and “Special Notes” for details. |
+|44652 |SDGAnalytics was updated.
+Revision to the 2022 Q1 Update. See the sheets named “Data Updates” for details. |
+|44651 |2022 Q1 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates”, “Metadata Updates” and “Special Notes” for details. |
+|44627 |Updates to the Global SDG Data Platform. See “Special Notes” for details. |
+|44572 |Metadata updated for indicator 16.1.4. See “Metadata Updates” sheet for details. |
+|44550 |2021 Q4 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. All metadata files have now been transferred to a new harmonized metadata template. Metadata content is unchanged unless an update has been indicated in the sheet “Metadata Updates”. |
+|44536 |Metadata updated for several indicators. See “Metadata Updates” sheet for details. |
+|44512 |Revision to the 2021 Q3 Update. See the sheets named “Data Updates” for details. |
+|44469 |2021 Q3 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|44462 |Launch of new Global SDG Indicators Data Platform. See “Special Notes” for details. |
+|44404 |Selection tree with geographic areas was updated to simplify selection. |
+|44390 |Revision to the 2021 Q2 Update. See the sheets named “Data Updates” for details. |
+|44383 |2021 Q2 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|44368 |Revision to the 2021 Q1 Update. See the sheets named “Data Updates” for details. |
+|44343 |Metadata updated for several indicators. See “Metadata Updates” sheet for details. |
+|44337 |Revision to the 2021 Q1 Update. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|44286 |2021 Q1 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|44246 |Revision to the 2020 Q4 Update. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|44232 |Metadata updated for indicators 1.4.1, 11.2.1, 11.3.1 and 11.7.1. See “Metadata Updates” sheet for details. |
+|44209 |Metadata updated for indicator 4.a.1. See “Metadata Updates” sheet for details. |
+|44186 |2020 Q4 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. In addition to data and metadata updates, series codes in the database were aligned with those in the DSD and the details are in the “Data Updates” sheet. |
+|44158 |Metadata updated for indicator 3.a.1. See “Metadata Updates” sheet for details. |
+|44151 |Metadata updated for indicator 4.1.1. See “Metadata Updates” sheet for details. |
+|44138 |Revision to the Q3 Update. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|44124 |Revision to the Q3 Update. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|44104 |2020 Q3 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|44090 |Metadata updated for indicator 6.5.1. See “Metadata Updates” sheet for details. |
+|44089 |Updaded and added metadata. See “Metadata Updates” for more details. |
+|44071 |Added metadata for indicator 17.3.1. See “Metadata Updates” sheet for details. |
+|44067 |Revision to the Q2 Update. See the sheet “Data Updates” for more details. |
+|44063 |Metadata updated for indicator 14.4.1. See “Metadata Updates” sheet for details. |
+|44046 |Revision to the Q2 Update. See the sheet “Data Updates” for more details. |
+|44042 |Revision to the Q2 Update. See the sheet “Data Updates” for more details. |
+|44033 |Metadata updated for indicator 17.2.1. Added metadata for indicator 1.2.2. See “Metadata Updates” sheet for details. |
+|44019 |2020 Q2 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|44012 |Revision to the Q1 Update. See the sheet “Data Updates” for more details. |
+|43982 |Revision to the Q1 Update. See the sheet “Data Updates” for more details. |
+|43921 |2020 Q1 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|43914 |Added metadata for the following indicators that were upgraded from Tier III to Tier II in the 9th IAEG-SDGs meeting.
+16.6.2, 16.7.1 (part b and c), 16.7.2.</p>
+<p>See “Metadata Updates” sheet for details. |
+|43819 |2019 Q4 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|43774 |Added metadata for the following indicators that were upgraded from Tier III to Tier II in the 10th IAEG-SDGs meeting in Addis Ababa (21-24 Oct 2019).
+3.5.1, 11.7.2, 14.1.1, 14.2.1, 15.9.1 and 16.4.1.</p>
+<p>See “Metadata Updates” sheet for details. |
+|43748 |Metadata updated for indicator 2.1.1 and 12.3.1. See “Metadata Updates” sheet for details. |
+|43745 |Added metadata for indicator 12.6.1 which was upgraded from Tier III to Tier II in September 2019.
+See “Metadata Updates” sheet for details. |
+|43741 |2019 Q3 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|43734 |Data updated for indicator 3.3.3 and 5.1.1. See “Data Updates” sheet for details. |
+|43678 |Data updated for indicator 17.18.2. See “Data Updates” sheet for details. |
+|43658 |Data updated for indicator 5.2.1. See “Data Updates” sheet for details. |
+|43654 |2019 Q2 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|43626 |Added metadata for the following indicators that were upgraded from Tier III to Tier II in March 2019.
+10.3.1, 14.7.1, 16.b.1, 16.1.2, 16.6.2, 16.7.1 (b and c), and 16.7.2.</p>
+<p>Metadata updated for indicator 9.1.2.</p>
+<p>See “Metadata Updates” sheet for details. |
+|43607 |Data updated for indicators 2.1.2, 7.1.2, 8.3.1 and 16.9.1. |
+|43553 |2019 Q1 DATABASE UPDATE WAS RELEASED. See the sheets named “Data Updates” and “Metadata Updates” for details. |
+|43493 |Data added for indicator 12.1.1. See “Data Updates” for details. |
+|43490 |Data updated for indicator 8.4.2/12.2.2. |
+|43479 |Added metadata for the following indicators that were upgraded from Tier III to Tier II in December 2018.
+(1) Indicator 8.8.2,
+(2) Indicator 8.b.1,
+(3) Indicator 9.1.1.
+See “Metadata Updates” sheet for details. |
+|43453 |Added metadata for indicator 17.13.1 which was upgraded from Tier III to Tier II in November 2018.
+Updated metadata for indicator 2.c.1.
+See “Metadata Updates” sheet for details. |
+|43441 |Added metadata for the following indicators that were upgraded from Tier III to Tier II in November 2018.
+(1) Indicator 2.4.1
+(2) Indicator 3.b.3
+(3) Indicator 4.1.1 Part (a)
+(4) Indicator 10.2.1
+(5) Indicator 10.7.1
+(6) Indicator 10.7.2
+(7) Indicator 11.3.2
+(8) Indicator 11.7.1
+(9) Indicator 14.3.1
+(10) Indicator 16.4.2
+(11) Indicator 16.7.1 |
+|43424 |(1) Footnote information updated for Kosovo.
+(2) Indicator 1.5.1. Data updated
+See “Data Updates” sheet for details. |
+|43406 |(1) Indicator 1.1.1: Data updated.
+(2) Indicator 8.5.1: Data updated.
+See “Data Updates” sheet for details. |
+|43389 |Added metadata for the following 5 indicators that were upgraded from Tier III to Tier II in September 2018.
+(1) Indicator 1.4.1
+(2) Indicator 2.3.1
+(3) Indicator 2.3.2
+(4) Indicator 5.6.2
+(5) Indicator 12.c.1 |
+|43383 |Indicator 5.3.2: Data updated. See “Data Updates” sheet for details. |
+|43376 |(1) Indicator 3.2.1: Metadata updated.
+(2) Indicator 3.2.2: Metadata updated.
+See “Metadata Updates” sheet for details. |
+|43371 |(1) Indicator 3.2.1: Data updated.
+(2) Indicator 3.2.2: Data updated.
+See “Data Updates” sheet for details. |
+|43368 |Indicator 17.15.1: Data added. See “Data Updates” sheet for details. |
+|43361 |Indicator 5.5.2: Metadata updated. |
+|43348 |Indicator 5.3.2: Age group information updated. See “Data Updates” sheet for details. |
+|43347 |Indicator 8.2.1: Data updated. See “Data Updates” sheet for details. |
+|43341 |(1) Indicator 8.8.1: Metadata updated.
+(2) Indicator 17.15.1: Metadata updated. |
+|43320 |(1) Indicator 9.2.2: Metadata updated.
+(2) Indicator 9.b.1: Metadata updated.
+(3) Indicator 17.16.1: Metadata updated. |
+|43304 |Indicator 16.1.1: Data added for Iraq (Central Iraq) and Iraq (Kurdistan Region). |
+|43301 |Indicator 16.3.2: Data added for UK (England and Wales), UK(Scotland) and UK (Northern Ireland). |
+|43297 |Indicator 5.4.1: Metadata updated. See the sheet “Metadata Updates” for details. |
+|43291 |(1) Indicator 6.6.1: Data for Malaysia added.
+(2) Indicator 1.5.2 (Direct economic loss attributed to disasters relative to GDP (%)): Syria (2008, 2009) data updated. |
+|43284 |(1) Indicator 7.2.1: Metadata updated.
+(2) Indicator 7.3.1: Metadata updated. |
+|43271 |ANNUAL MAJOR DATABASE UPDATE WAS RELEASED. For the list of data series updated, see the sheet named “Data Updates” in this Excel file. |
+|43270 |(1) Indicator 1.5.1: Metadata updated.
+(2) Indicator 1.5.2: Metadata updated.
+(3) Indicator 1.5.4: Metadata updated.
+(4) Indicator 15.1.1: Metadata updated.
+(5) Indicator 15.2.1: Metadata updated.
+(6) Indicator 2.1.1: Metadata updated.
+(7) Indicator 3.7.2: Metadata updated.
+(8) Indicator 8.1.1: Metadata updated.
+(9) Indicator 8.10.1: Metadata updated. |
+|43259 |(1) Indicator 1.1.1: Metadata updated for the data series “proportion of employed population below the international poverty line of $1.90 per day”..
+(2) Indicator 1.3.1: Metadata updated.
+(3) Indicator 10.c.1: Metadata updated.
+(4) Indicator 16.10.1: Metadata updated.
+(5) Indicator 17.1.1: Metadata added.
+(6) Indicator 17.1.2: Metadata added.
+(7) Indicator 3.5.2: Metadata updated.
+(8) Indicator 5.1.1: Metadata added.
+(9) Indicator 5.5.2: Metadata updated.
+(10) Indicator 8.2.1: Metadata updated.
+(11) Indicator 8.3.1: Metadata updated.
+(12) Indicator 8.5.2: Metadata updated.
+(13) Indicator 8.6.1: Metadata updated.
+(14) Indicator 8.8.1: Metadata updated. |
+|43251 |(1) Indicator 15.6.1: Metadata updated. |
+|43249 |(1) Indicator 14.6.1: Metadata added.
+(2) Indicator 14.a.1: Metadata added.
+(3) Indicator 14.b.1: Metadata added.
+(4) Indicator 3.8.2: Metadata updated. |
+|43229 |(1) Indicator 3.8.1: Metadata added.
+(2) Indicator 6.3.2: Metadata added.
+(3) Indicator 6.6.1: Metadata added. |
+|43192 |(1) Indicator 9.3.1: Metadata added.
+(2) Indicator 9.3.2: Metadata added. |
+|43171 |(1) Indicator 9.4.1: Metadata updated. |
+|43145 |(1) Indicator 11.1.1: Metadata updated.
+(2) Indicator 11.6.1: Metadata updated.
+(3) Indicator 12.1.1: Metatada added. |
+|43144 |(1) Indicator 15.8.1: Metadata updated.
+(2) Indicator 17.18.2: Metadata updated.
+(3) Indicator 3.c.1: Metadata updated. |
+|43143 |(1) Indicator 1.4.2: Metadata added.
+(2) Indicator 12.2.1: Metadata updated.
+(3) Indicator 12.2.2: Metadata updated.
+(4) Indicator 3.b.1: Metadata added.
+(5) Indicator 5.a.2: Metadata updated.
+(6) Indicator 6.4.1: Metadata added.
+(7) Indicator 7.a.1: Metadata added.
+(8) Indicator 8.4.1: Metadata updated.
+(9) Indicator 8.4.2: Metadata updated. |
+|43139 |(1) Indicator 3.3.3: Metadata added. |
+|43130 |(1) Indicator 15.3.1: Metadata added.
+(2) Indicator 5.5.1: Metadata updated.
+(3) Indicator 5.c.1: Metadata added. |
+|43118 |(1) Indicator 3.1.1: Metadata updated. |
+|43109 |(1) Indicator 3.3.2: Metadata updated. |
+|43096 |(1) Indicator 5.4.1: Metadata updated. |</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="global-sdg-indicators-database-and-metadata-repository.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="api-web-interface.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

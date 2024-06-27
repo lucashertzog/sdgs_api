@@ -8,11 +8,11 @@ editor_options:
 
 -   RStudio Environment. Let's rearrange the panel layout:
 
-![Tools>Global Options...](images/img_panel00.png)
+![Tools\>Global Options...](images/img_panel00.png)
 
 ![Pane Layout](images/img_panel01.png)
 
-## Basic data management and folder structure
+## Essential data management and folder structure
 
 ```         
 ├── config.R
@@ -44,7 +44,7 @@ editor_options:
 
 ## config.R
 
-```
+```         
 # packages
 
 if (!require(data.table)) {
@@ -98,6 +98,30 @@ for (file in file_list) {
 }
 ```
 
+## run.R
+
+```         
+source("config.R")
+
+### 1. Download ####
+# Use the function to download SDGs data
+do_get_sdg_api()
+
+### 2. Data cleaning ####
+# Function to clean the data downloaded
+indat <- do_clean()
+
+### 3. Tabulating ####
+tab <- do_tab_country(indat, country = "Indonesia")
+
+### 4. Visualise ####
+# Generate and interactive plot with the data cleaned
+do_plot()
+
+### 5. Map ####
+do_map()
+```
+
 ## do_get_sdg_api.R
 
 ```         
@@ -115,5 +139,27 @@ do_get_sdg_api <- function(
   
   # Execute cURL
   system(curl)
+}
+```
+
+## do_clean
+
+```         
+do_clean <- function() {
+  # options(scipen = 1000)
+  # Load data
+  indat <- fread(file.path("data_derived", "sdg_14.csv"))
+  # mapping  <- fread(file.path("data_provided", "country-to-region-mapping.csv"))
+  
+  # Keep only the values that are either blank or 'A' under 'Observation Status', drop the rest
+  indat <- indat[`[Observation Status]` == "" | `[Observation Status]` == "A"]
+  
+  # Replace '-' with '_' across all disaggregation values
+  cols_to_replace <- grep("\\[.*\\]",
+                          names(indat), 
+                          value = TRUE)
+  indat[, (cols_to_replace) := lapply(.SD, function(x) gsub("-", "_", x)), 
+        .SDcols = cols_to_replace]
+  return(indat)
 }
 ```

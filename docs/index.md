@@ -13,6 +13,6 @@ Welcome to the course on Ocean Development Indicators in R. This book provides a
 
 ## Training Objectives
 
-- Learn to extract, clean, and analyse data from the UN Global SDG Database using R and the UNSD SDG API.
+- Learn to extract, clean, and analyse data from the UN Global SDG Database using R and the UN SDG API.
 - Provide foundational knowledge on interacting with GitHub using R within the workshop context.
 - Enable participants to build indicators informed by global standards but tailored to their specific contexts.
