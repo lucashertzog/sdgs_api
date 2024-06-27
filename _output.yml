@@ -5,8 +5,8 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">Global Dialogue R training</a></li>
-          <li><a href="https://www.oceanaccounts.org/" target="blank">
+        <li style="text-align: center;"><a href="./">Global Dialogue R training</a></li>
+        <li style="text-align: center;"><a href="https://www.oceanaccounts.org/" target="blank">
           <img src="https://www.oceanaccounts.org/content/images/2022/02/GOAP-logo.png" alt="GOAP" style="width:89px;height:30px;">
         </a></li>
       after: |
