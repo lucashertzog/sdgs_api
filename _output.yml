@@ -5,10 +5,11 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li style="text-align: center;"><a href="./">Global Dialogue R training</a></li>
+        <li style="text-align: center;"><a href="./">R training</a></li>
         <li style="text-align: center;"><a href="https://www.oceanaccounts.org/" target="blank">
           <img src="https://www.oceanaccounts.org/content/images/2022/02/GOAP-logo.png" alt="GOAP" style="width:89px;height:30px;">
         </a></li>
+        <li style="text-align: center;"><a href="https://www.oceanaccounts.org/global-dialogue-sustainable-ocean-development/">Global Dialogue, Bali 2024</a></li>
       after: |
         <li style="text-align: center;">Contact me:</li>
         <li style="display: flex; align-items: center; justify-content: center; gap: 10px;">

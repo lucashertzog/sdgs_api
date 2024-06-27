@@ -13,7 +13,7 @@ Welcome to the course on Ocean Development Indicators in R. This book provides a
 
 ## Context
 
-Ocean accounting provides comprehensive indicators of mainstream ocean contributions to society, and the SDG indicators could be a starting point for highlighting gaps.
+Ocean accounting provides comprehensive indicators of mainstream ocean contributions to society, and the SDG indicators can be used as a starting point for highlighting gaps.
 
 -   Identify which indicators are available in the context of the country.
 
@@ -39,4 +39,4 @@ Ocean accounting provides comprehensive indicators of mainstream ocean contribut
 
 -   Participants' names, organisations, and where they stand in the Venn Diagram.
 
-![Data Science Venn diagram: http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram](images/Data_Science_VD.png)
+![Data Science Venn diagram: <http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram>](images/Data_Science_VD.png)
