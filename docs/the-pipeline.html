@@ -85,6 +85,7 @@
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#context"><i class="fa fa-check"></i><b>1.1</b> Context</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#training-objectives"><i class="fa fa-check"></i><b>1.2</b> Training Objectives</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#introductions"><i class="fa fa-check"></i><b>1.3</b> Introductions</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>2</b> Setup</a>
 <ul>
@@ -113,8 +114,11 @@
 <li class="chapter" data-level="6.1" data-path="the-pipeline.html"><a href="the-pipeline.html#essential-data-management-and-folder-structure"><i class="fa fa-check"></i><b>6.1</b> Essential data management and folder structure</a></li>
 <li class="chapter" data-level="6.2" data-path="the-pipeline.html"><a href="the-pipeline.html#config.r"><i class="fa fa-check"></i><b>6.2</b> config.R</a></li>
 <li class="chapter" data-level="6.3" data-path="the-pipeline.html"><a href="the-pipeline.html#run.r"><i class="fa fa-check"></i><b>6.3</b> run.R</a></li>
-<li class="chapter" data-level="6.4" data-path="the-pipeline.html"><a href="the-pipeline.html#do_get_sdg_api.r"><i class="fa fa-check"></i><b>6.4</b> do_get_sdg_api.R</a></li>
+<li class="chapter" data-level="6.4" data-path="the-pipeline.html"><a href="the-pipeline.html#do_get_sdg_api"><i class="fa fa-check"></i><b>6.4</b> do_get_sdg_api</a></li>
 <li class="chapter" data-level="6.5" data-path="the-pipeline.html"><a href="the-pipeline.html#do_clean"><i class="fa fa-check"></i><b>6.5</b> do_clean</a></li>
+<li class="chapter" data-level="6.6" data-path="the-pipeline.html"><a href="the-pipeline.html#do_tab_country"><i class="fa fa-check"></i><b>6.6</b> do_tab_country</a></li>
+<li class="chapter" data-level="6.7" data-path="the-pipeline.html"><a href="the-pipeline.html#do_plot"><i class="fa fa-check"></i><b>6.7</b> do_plot</a></li>
+<li class="chapter" data-level="6.8" data-path="the-pipeline.html"><a href="the-pipeline.html#do_map"><i class="fa fa-check"></i><b>6.8</b> do_map</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="useful-links-and-resources.html"><a href="useful-links-and-resources.html"><i class="fa fa-check"></i><b>7</b> Useful links and resources</a></li>
 <li class="divider"></li>
@@ -264,8 +268,8 @@ do_plot()
 ### 5. Map ####
 do_map()</code></pre>
 </div>
-<div id="do_get_sdg_api.r" class="section level2 hasAnchor" number="6.4">
-<h2><span class="header-section-number">6.4</span> do_get_sdg_api.R<a href="the-pipeline.html#do_get_sdg_api.r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="do_get_sdg_api" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> do_get_sdg_api<a href="the-pipeline.html#do_get_sdg_api" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <pre><code>do_get_sdg_api &lt;- function(
     output = &quot;data_derived/sdg_14.csv&quot;
 ){
@@ -300,6 +304,197 @@ do_map()</code></pre>
   indat[, (cols_to_replace) := lapply(.SD, function(x) gsub(&quot;-&quot;, &quot;_&quot;, x)), 
         .SDcols = cols_to_replace]
   return(indat)
+}</code></pre>
+</div>
+<div id="do_tab_country" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> do_tab_country<a href="the-pipeline.html#do_tab_country" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>do_tab_country &lt;- function(
+    indat,
+    country
+){
+# Filter the input data for the specified country  
+foo &lt;- indat[GeoAreaName == country]
+
+# Select specific columns from the filtered data
+foo14 &lt;- foo[, .(Indicator,
+                 SeriesDescription,
+                 TimePeriod,
+                 Source)]
+
+# Convert TimePeriod column to numeric for easier calculations
+foo14[, NumericTimePeriod := as.numeric(TimePeriod)]
+
+# Calculate min and max year for each SeriesDescription using TimePeriod
+time_ranges &lt;- foo14[, .(
+  StartYear = min(NumericTimePeriod, na.rm = TRUE),
+  EndYear = max(NumericTimePeriod, na.rm = TRUE)
+), by = SeriesDescription]
+
+# Create a time range string (e.g., &quot;2000-2020&quot; or &quot;2000&quot; if start and end year are the same)
+time_ranges[, TimeRange := ifelse(StartYear == EndYear, as.character(StartYear), paste(StartYear, EndYear, sep = &quot;-&quot;))]
+
+# Merge the new time range back to the main data.table
+foo14 &lt;- merge(foo14, time_ranges, by = &quot;SeriesDescription&quot;, all.x = TRUE)
+
+# Drop temporary columns that are no longer needed
+foo14[, NumericTimePeriod := NULL]
+foo14[, StartYear := NULL]
+foo14[, EndYear := NULL]
+foo14[, TimePeriod := NULL]
+
+# Keep unique rows based on SeriesDescription
+unq &lt;- unique(foo14, by = &quot;SeriesDescription&quot;)
+
+# Select the final columns to include in the output
+unq &lt;- unq[, .(Indicator, SeriesDescription, TimeRange, Source)]
+
+# Define the output file name based on the country
+out_name &lt;- paste0(&quot;data_derived/&quot;, country, &quot;_SDG_14.csv&quot;)
+
+# Write the data to a CSV file
+fwrite(unq, out_name)
+
+return(unq)
+}</code></pre>
+</div>
+<div id="do_plot" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> do_plot<a href="the-pipeline.html#do_plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>do_plot &lt;- function(){
+
+  # Subset the data to only include rows where the Indicator is &quot;14.7.1&quot;
+  sdg1471 &lt;- indat[Indicator==&quot;14.7.1&quot;]
+  
+  # Order the subsetted data by GeoAreaName in ascending order
+  sdg1471 &lt;- sdg1471[order(sdg1471$GeoAreaName, decreasing = FALSE)]
+  
+  # Display the unique GeoAreaNames in the subsetted and ordered data
+  unique(sdg1471$GeoAreaName)
+  
+  # Further subset the data to only include rows where the GeoAreaName is &quot;Indonesia&quot;
+  sdg1471_ind &lt;- sdg1471[GeoAreaName==&quot;Indonesia&quot;]
+  
+  # Let&#39;s make a simple plot using base R
+  plot(
+    sdg1471_ind$TimePeriod,
+    sdg1471_ind$Value
+  )
+  
+  # Some improvements: 
+  # type = &quot;l&quot;
+  # col = &quot;blue&quot;
+  # lwd = 2
+  # main = &quot;Sustainable Fisheries as a proportion of GDP in Indonesia&quot;
+  # xlab = &quot;Year&quot;
+  # ylab = &quot;(%)&quot;
+  
+  # Comparing Indonesia with other countries, subsetting first
+  sdg1471_comp &lt;- sdg1471[GeoAreaName %in% c(&quot;Indonesia&quot;, &quot;Malaysia&quot;, &quot;Cook Islands&quot;)]
+
+  # Create the plot using ggplot2
+  ggplot(sdg1471_comp, 
+         aes(x = TimePeriod, y = Value, color = GeoAreaName, group = GeoAreaName)) +
+    geom_line(size = 1.2) +
+    labs(title = &quot;Sustainable Fisheries as a proportion of GDP&quot;,
+         x = &quot;Year&quot;,
+         y = &quot;(%)&quot;,
+         color = &quot;Country&quot;) +
+    theme_minimal()
+  
+  # Include world averages for comparison
+  sdg1471_comp_two &lt;- sdg1471[GeoAreaName %in% c(&quot;Indonesia&quot;, &quot;Malaysia&quot;, &quot;Cook Islands&quot;, &quot;World&quot;)]
+  
+  # Create the plot using ggplot2
+ p &lt;-  ggplot(sdg1471_comp_two, 
+         aes(x = TimePeriod, y = Value, color = GeoAreaName, group = GeoAreaName)) +
+    geom_line(size = 1.2) +
+    labs(title = &quot;Sustainable Fisheries as a proportion of GDP (including World average)&quot;,
+         x = &quot;Year&quot;,
+         y = &quot;(%)&quot;,
+         color = &quot;Country&quot;) +
+    theme_minimal()
+  
+return(p)
+}</code></pre>
+</div>
+<div id="do_map" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> do_map<a href="the-pipeline.html#do_map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>do_map &lt;- function()
+{
+# United Nations Convention on the Law of the Sea (UNCLOS)
+  
+  # Indicator 14.c.1: Number of countries making progress in ratifying, 
+  # accepting and implementing through legal, policy and institutional frameworks, 
+  # ocean-related instruments that implement international law, as reflected in 
+  # the United Nations Convention on the Law of the Sea, for the conservation and 
+  # sustainable use of the oceans and their resources
+  
+foo &lt;- indat[SeriesCode == &quot;ER_UNCLOS_RATACC&quot; | SeriesCode == &quot;ER_UNCLOS_IMPLE&quot;]
+
+foo1 &lt;- foo[SeriesCode == &quot;ER_UNCLOS_RATACC&quot;, .SD[which.max(as.numeric(TimePeriod))], by = GeoAreaName]
+
+foo2&lt;- foo[SeriesCode == &quot;ER_UNCLOS_IMPLE&quot;, .SD[which.max(as.numeric(TimePeriod))], by = GeoAreaName] 
+
+# Get country polygons
+world &lt;- rnaturalearth::ne_countries(scale = &quot;medium&quot;, returnclass = &quot;sf&quot;)
+
+setnames(foo1, &quot;GeoAreaName&quot;, &quot;name&quot;)
+setnames(foo2, &quot;GeoAreaName&quot;, &quot;name&quot;)
+
+foo2_names &lt;- unique(foo2$name)
+foo1_names &lt;- unique(foo1$name)
+world_names &lt;- unique(world$name)
+names_diff_foo2_world &lt;- setdiff(foo2_names, world_names)
+names_diff_foo1_world &lt;- setdiff(foo1_names, world_names)
+ 
+print(&quot;Names in foo2 not in world:&quot;)
+print(names_diff_foo2_world)
+print(names_diff_foo1_world)
+
+foo2[name == &quot;Republic of Korea&quot;, name := &quot;South Korea&quot;]
+foo2[name == &quot;United Kingdom of Great Britain and Northern Ireland&quot;, name := &quot;United Kingdom&quot;]
+foo2[name == &quot;Russian Federation&quot;, name := &quot;Russia&quot;]
+foo2[name == &quot;Venezuela (Bolivarian Republic of)&quot;, name := &quot;Venezuela&quot;]
+
+foo1[name == &quot;Republic of Korea&quot;, name := &quot;South Korea&quot;]
+foo1[name == &quot;United Kingdom of Great Britain and Northern Ireland&quot;, name := &quot;United Kingdom&quot;]
+foo1[name == &quot;Russian Federation&quot;, name := &quot;Russia&quot;]
+foo1[name == &quot;Venezuela (Bolivarian Republic of)&quot;, name := &quot;Venezuela&quot;]
+
+foo2_imple &lt;- foo2[SeriesCode == &quot;ER_UNCLOS_IMPLE&quot;]
+foo1_rat &lt;- foo1[SeriesCode == &quot;ER_UNCLOS_RATACC&quot;]
+
+foo3 &lt;- rbind(foo2_imple, foo1_rat)
+
+foo3_map &lt;- merge(world, foo3, by = &quot;name&quot;, all.x = TRUE, fill = TRUE)
+
+setDT(foo3_map)
+
+# Replace NaN and NA in &#39;Value&#39; with NA for uniform handling
+foo3_map[, Value := fifelse(is.nan(Value) | is.na(Value), as.numeric(NA), Value)]
+
+foo3_map[, ValueFactor := cut(Value, breaks = c(0, 50, 69, 79, 89, 100),
+                              include.lowest = TRUE, right = TRUE,
+                              labels = c(&quot;0-50%&quot;, &quot;51-69%&quot;, &quot;70-79%&quot;, &quot;80-89%&quot;, &quot;90-100%&quot;))]
+
+foo4 &lt;- foo3_map[!is.na(foo3_map$Value)]
+foo5 &lt;- foo4[, c(&quot;name&quot;, &quot;Value&quot;, &quot;Indicator&quot;, &quot;TimePeriod&quot;, &quot;SeriesDescription&quot;), drop = FALSE]
+write.csv(foo5, &quot;data_derived/sdg_14_unclos_map.csv&quot;, row.names = FALSE)
+
+foo3_map &lt;- st_as_sf(foo3_map)
+
+equal_earth_projection &lt;- st_crs(&quot;+proj=eqearth +datum=WGS84&quot;)
+
+p &lt;- ggplot(data = foo3_map) +
+  geom_sf(aes(geometry = geometry, fill = ValueFactor), color = &quot;white&quot;, size = 0.2) +
+  scale_fill_brewer(palette = &quot;YlGnBu&quot;, name = &quot;&quot;, na.value = &quot;grey&quot;) +
+  coord_sf(crs = equal_earth_projection, datum = NA) +  # Apply Equal Earth projection
+  theme(
+    panel.background = element_rect(fill = &quot;white&quot;),
+    legend.position = &quot;top&quot;
+  )
+
+ggsave(&quot;figures_and_tables/fig_map.png&quot;, plot = p, width = 10, height = 6, dpi = 300, units = &quot;in&quot;)
+
 }</code></pre>
 
 </div>

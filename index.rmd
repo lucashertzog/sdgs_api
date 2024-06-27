@@ -28,3 +28,15 @@ Ocean accounting provides comprehensive indicators of mainstream ocean contribut
 -   Provide foundational knowledge on interacting with GitHub using R within the workshop context.
 
 -   Enable participants to build indicators informed by global standards but tailored to their specific contexts.
+
+## Introductions
+
+-   What is a sociologist doing here?
+
+-   My areas of interest are 1) sociology and public health, 2) hacking and statistics, and 3) climate change and sustainable transitions.
+
+-   The Data Science Venn Diagram
+
+-   Participants' names, organisations, and where they stand in the Venn Diagram.
+
+![Data Science Venn diagram: http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram](images/Data_Science_VD.png)

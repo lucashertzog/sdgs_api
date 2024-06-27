@@ -122,7 +122,7 @@ do_plot()
 do_map()
 ```
 
-## do_get_sdg_api.R
+## do_get_sdg_api
 
 ```         
 do_get_sdg_api <- function(
@@ -163,3 +163,198 @@ do_clean <- function() {
   return(indat)
 }
 ```
+
+## do_tab_country
+```
+do_tab_country <- function(
+    indat,
+    country
+){
+# Filter the input data for the specified country  
+foo <- indat[GeoAreaName == country]
+
+# Select specific columns from the filtered data
+foo14 <- foo[, .(Indicator,
+                 SeriesDescription,
+                 TimePeriod,
+                 Source)]
+
+# Convert TimePeriod column to numeric for easier calculations
+foo14[, NumericTimePeriod := as.numeric(TimePeriod)]
+
+# Calculate min and max year for each SeriesDescription using TimePeriod
+time_ranges <- foo14[, .(
+  StartYear = min(NumericTimePeriod, na.rm = TRUE),
+  EndYear = max(NumericTimePeriod, na.rm = TRUE)
+), by = SeriesDescription]
+
+# Create a time range string (e.g., "2000-2020" or "2000" if start and end year are the same)
+time_ranges[, TimeRange := ifelse(StartYear == EndYear, as.character(StartYear), paste(StartYear, EndYear, sep = "-"))]
+
+# Merge the new time range back to the main data.table
+foo14 <- merge(foo14, time_ranges, by = "SeriesDescription", all.x = TRUE)
+
+# Drop temporary columns that are no longer needed
+foo14[, NumericTimePeriod := NULL]
+foo14[, StartYear := NULL]
+foo14[, EndYear := NULL]
+foo14[, TimePeriod := NULL]
+
+# Keep unique rows based on SeriesDescription
+unq <- unique(foo14, by = "SeriesDescription")
+
+# Select the final columns to include in the output
+unq <- unq[, .(Indicator, SeriesDescription, TimeRange, Source)]
+
+# Define the output file name based on the country
+out_name <- paste0("data_derived/", country, "_SDG_14.csv")
+
+# Write the data to a CSV file
+fwrite(unq, out_name)
+
+return(unq)
+}
+```
+
+## do_plot
+```
+do_plot <- function(){
+
+  # Subset the data to only include rows where the Indicator is "14.7.1"
+  sdg1471 <- indat[Indicator=="14.7.1"]
+  
+  # Order the subsetted data by GeoAreaName in ascending order
+  sdg1471 <- sdg1471[order(sdg1471$GeoAreaName, decreasing = FALSE)]
+  
+  # Display the unique GeoAreaNames in the subsetted and ordered data
+  unique(sdg1471$GeoAreaName)
+  
+  # Further subset the data to only include rows where the GeoAreaName is "Indonesia"
+  sdg1471_ind <- sdg1471[GeoAreaName=="Indonesia"]
+  
+  # Let's make a simple plot using base R
+  plot(
+    sdg1471_ind$TimePeriod,
+    sdg1471_ind$Value
+  )
+  
+  # Some improvements: 
+  # type = "l"
+  # col = "blue"
+  # lwd = 2
+  # main = "Sustainable Fisheries as a proportion of GDP in Indonesia"
+  # xlab = "Year"
+  # ylab = "(%)"
+  
+  # Comparing Indonesia with other countries, subsetting first
+  sdg1471_comp <- sdg1471[GeoAreaName %in% c("Indonesia", "Malaysia", "Cook Islands")]
+
+  # Create the plot using ggplot2
+  ggplot(sdg1471_comp, 
+         aes(x = TimePeriod, y = Value, color = GeoAreaName, group = GeoAreaName)) +
+    geom_line(size = 1.2) +
+    labs(title = "Sustainable Fisheries as a proportion of GDP",
+         x = "Year",
+         y = "(%)",
+         color = "Country") +
+    theme_minimal()
+  
+  # Include world averages for comparison
+  sdg1471_comp_two <- sdg1471[GeoAreaName %in% c("Indonesia", "Malaysia", "Cook Islands", "World")]
+  
+  # Create the plot using ggplot2
+ p <-  ggplot(sdg1471_comp_two, 
+         aes(x = TimePeriod, y = Value, color = GeoAreaName, group = GeoAreaName)) +
+    geom_line(size = 1.2) +
+    labs(title = "Sustainable Fisheries as a proportion of GDP (including World average)",
+         x = "Year",
+         y = "(%)",
+         color = "Country") +
+    theme_minimal()
+  
+return(p)
+}
+```
+
+## do_map
+```
+do_map <- function()
+{
+# United Nations Convention on the Law of the Sea (UNCLOS)
+  
+  # Indicator 14.c.1: Number of countries making progress in ratifying, 
+  # accepting and implementing through legal, policy and institutional frameworks, 
+  # ocean-related instruments that implement international law, as reflected in 
+  # the United Nations Convention on the Law of the Sea, for the conservation and 
+  # sustainable use of the oceans and their resources
+  
+foo <- indat[SeriesCode == "ER_UNCLOS_RATACC" | SeriesCode == "ER_UNCLOS_IMPLE"]
+
+foo1 <- foo[SeriesCode == "ER_UNCLOS_RATACC", .SD[which.max(as.numeric(TimePeriod))], by = GeoAreaName]
+
+foo2<- foo[SeriesCode == "ER_UNCLOS_IMPLE", .SD[which.max(as.numeric(TimePeriod))], by = GeoAreaName] 
+
+# Get country polygons
+world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
+
+setnames(foo1, "GeoAreaName", "name")
+setnames(foo2, "GeoAreaName", "name")
+
+foo2_names <- unique(foo2$name)
+foo1_names <- unique(foo1$name)
+world_names <- unique(world$name)
+names_diff_foo2_world <- setdiff(foo2_names, world_names)
+names_diff_foo1_world <- setdiff(foo1_names, world_names)
+ 
+print("Names in foo2 not in world:")
+print(names_diff_foo2_world)
+print(names_diff_foo1_world)
+
+foo2[name == "Republic of Korea", name := "South Korea"]
+foo2[name == "United Kingdom of Great Britain and Northern Ireland", name := "United Kingdom"]
+foo2[name == "Russian Federation", name := "Russia"]
+foo2[name == "Venezuela (Bolivarian Republic of)", name := "Venezuela"]
+
+foo1[name == "Republic of Korea", name := "South Korea"]
+foo1[name == "United Kingdom of Great Britain and Northern Ireland", name := "United Kingdom"]
+foo1[name == "Russian Federation", name := "Russia"]
+foo1[name == "Venezuela (Bolivarian Republic of)", name := "Venezuela"]
+
+foo2_imple <- foo2[SeriesCode == "ER_UNCLOS_IMPLE"]
+foo1_rat <- foo1[SeriesCode == "ER_UNCLOS_RATACC"]
+
+foo3 <- rbind(foo2_imple, foo1_rat)
+
+foo3_map <- merge(world, foo3, by = "name", all.x = TRUE, fill = TRUE)
+
+setDT(foo3_map)
+
+# Replace NaN and NA in 'Value' with NA for uniform handling
+foo3_map[, Value := fifelse(is.nan(Value) | is.na(Value), as.numeric(NA), Value)]
+
+foo3_map[, ValueFactor := cut(Value, breaks = c(0, 50, 69, 79, 89, 100),
+                              include.lowest = TRUE, right = TRUE,
+                              labels = c("0-50%", "51-69%", "70-79%", "80-89%", "90-100%"))]
+
+foo4 <- foo3_map[!is.na(foo3_map$Value)]
+foo5 <- foo4[, c("name", "Value", "Indicator", "TimePeriod", "SeriesDescription"), drop = FALSE]
+write.csv(foo5, "data_derived/sdg_14_unclos_map.csv", row.names = FALSE)
+
+foo3_map <- st_as_sf(foo3_map)
+
+equal_earth_projection <- st_crs("+proj=eqearth +datum=WGS84")
+
+p <- ggplot(data = foo3_map) +
+  geom_sf(aes(geometry = geometry, fill = ValueFactor), color = "white", size = 0.2) +
+  scale_fill_brewer(palette = "YlGnBu", name = "", na.value = "grey") +
+  coord_sf(crs = equal_earth_projection, datum = NA) +  # Apply Equal Earth projection
+  theme(
+    panel.background = element_rect(fill = "white"),
+    legend.position = "top"
+  )
+
+ggsave("figures_and_tables/fig_map.png", plot = p, width = 10, height = 6, dpi = 300, units = "in")
+
+}
+```
+

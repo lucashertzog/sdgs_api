@@ -1,6 +1,7 @@
 welcome
 context
 training-objectives
+introductions
 setup
 windows-users
 create-a-github-account-sign-up
@@ -17,6 +18,9 @@ the-pipeline
 essential-data-management-and-folder-structure
 config.r
 run.r
-do_get_sdg_api.r
+do_get_sdg_api
 do_clean
+do_tab_country
+do_plot
+do_map
 useful-links-and-resources
