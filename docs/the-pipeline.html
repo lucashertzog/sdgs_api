@@ -264,314 +264,303 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-3"><a href="the-pipeline.html#cb4-3" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(data.table)) {</span>
 <span id="cb4-4"><a href="the-pipeline.html#cb4-4" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;data.table&quot;</span>)</span>
 <span id="cb4-5"><a href="the-pipeline.html#cb4-5" tabindex="-1"></a>  <span class="fu">library</span>(data.table)</span>
-<span id="cb4-6"><a href="the-pipeline.html#cb4-6" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Loading required package: data.table</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="the-pipeline.html#cb6-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(ggplot2)) {</span>
-<span id="cb6-2"><a href="the-pipeline.html#cb6-2" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb6-3"><a href="the-pipeline.html#cb6-3" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-4"><a href="the-pipeline.html#cb6-4" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.2.3</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="the-pipeline.html#cb9-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(sf)) {</span>
-<span id="cb9-2"><a href="the-pipeline.html#cb9-2" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span>
-<span id="cb9-3"><a href="the-pipeline.html#cb9-3" tabindex="-1"></a>  <span class="fu">library</span>(sf)</span>
-<span id="cb9-4"><a href="the-pipeline.html#cb9-4" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Loading required package: sf</code></pre>
-<pre><code>## Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="the-pipeline.html#cb12-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(RColorBrewer)) {</span>
-<span id="cb12-2"><a href="the-pipeline.html#cb12-2" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;RColorBrewer&quot;</span>)</span>
-<span id="cb12-3"><a href="the-pipeline.html#cb12-3" tabindex="-1"></a>  <span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb12-4"><a href="the-pipeline.html#cb12-4" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Loading required package: RColorBrewer</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="the-pipeline.html#cb14-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(rnaturalearth)) {</span>
-<span id="cb14-2"><a href="the-pipeline.html#cb14-2" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;rnaturalearth&quot;</span>)</span>
-<span id="cb14-3"><a href="the-pipeline.html#cb14-3" tabindex="-1"></a>  <span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb14-4"><a href="the-pipeline.html#cb14-4" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Loading required package: rnaturalearth</code></pre>
-<pre><code>## Warning: package &#39;rnaturalearth&#39; was built under R version 4.2.3</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="the-pipeline.html#cb17-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(rnaturalearthdata)) {</span>
-<span id="cb17-2"><a href="the-pipeline.html#cb17-2" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;rnaturalearthdata&quot;</span>)</span>
-<span id="cb17-3"><a href="the-pipeline.html#cb17-3" tabindex="-1"></a>  <span class="fu">library</span>(rnaturalearthdata)</span>
-<span id="cb17-4"><a href="the-pipeline.html#cb17-4" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Loading required package: rnaturalearthdata</code></pre>
-<pre><code>## Warning: package &#39;rnaturalearthdata&#39; was built under R version 4.2.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;rnaturalearthdata&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:rnaturalearth&#39;:
-## 
-##     countries110</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="the-pipeline.html#cb22-1" tabindex="-1"></a><span class="do">## set folder names</span></span>
-<span id="cb22-2"><a href="the-pipeline.html#cb22-2" tabindex="-1"></a>folder_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;data_derived&quot;</span>, <span class="st">&quot;data_provided&quot;</span>, <span class="st">&quot;figures_and_tables&quot;</span>)</span>
-<span id="cb22-3"><a href="the-pipeline.html#cb22-3" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="the-pipeline.html#cb22-4" tabindex="-1"></a><span class="cf">for</span> (folder_name <span class="cf">in</span> folder_names) {</span>
-<span id="cb22-5"><a href="the-pipeline.html#cb22-5" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(folder_name)) {</span>
-<span id="cb22-6"><a href="the-pipeline.html#cb22-6" tabindex="-1"></a>    <span class="fu">dir.create</span>(folder_name)</span>
-<span id="cb22-7"><a href="the-pipeline.html#cb22-7" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Folder&quot;</span>, folder_name, <span class="st">&quot;created.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb22-8"><a href="the-pipeline.html#cb22-8" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb22-9"><a href="the-pipeline.html#cb22-9" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Folder&quot;</span>, folder_name, <span class="st">&quot;already exists.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb22-10"><a href="the-pipeline.html#cb22-10" tabindex="-1"></a>  }</span>
-<span id="cb22-11"><a href="the-pipeline.html#cb22-11" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Folder data_derived created.
-## Folder data_provided already exists.
-## Folder figures_and_tables created.</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="the-pipeline.html#cb24-1" tabindex="-1"></a><span class="do">## source functions</span></span>
-<span id="cb24-2"><a href="the-pipeline.html#cb24-2" tabindex="-1"></a>file_list <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;R&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.R$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb24-3"><a href="the-pipeline.html#cb24-3" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="the-pipeline.html#cb24-4" tabindex="-1"></a><span class="co"># Source each .R file</span></span>
-<span id="cb24-5"><a href="the-pipeline.html#cb24-5" tabindex="-1"></a><span class="cf">for</span> (file <span class="cf">in</span> file_list) {</span>
-<span id="cb24-6"><a href="the-pipeline.html#cb24-6" tabindex="-1"></a>  <span class="fu">source</span>(file)</span>
-<span id="cb24-7"><a href="the-pipeline.html#cb24-7" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb4-6"><a href="the-pipeline.html#cb4-6" tabindex="-1"></a>}</span>
+<span id="cb4-7"><a href="the-pipeline.html#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="the-pipeline.html#cb4-8" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(ggplot2)) {</span>
+<span id="cb4-9"><a href="the-pipeline.html#cb4-9" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb4-10"><a href="the-pipeline.html#cb4-10" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-11"><a href="the-pipeline.html#cb4-11" tabindex="-1"></a>}</span>
+<span id="cb4-12"><a href="the-pipeline.html#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="the-pipeline.html#cb4-13" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(sf)) {</span>
+<span id="cb4-14"><a href="the-pipeline.html#cb4-14" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb4-15"><a href="the-pipeline.html#cb4-15" tabindex="-1"></a>  <span class="fu">library</span>(sf)</span>
+<span id="cb4-16"><a href="the-pipeline.html#cb4-16" tabindex="-1"></a>}</span>
+<span id="cb4-17"><a href="the-pipeline.html#cb4-17" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="the-pipeline.html#cb4-18" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(RColorBrewer)) {</span>
+<span id="cb4-19"><a href="the-pipeline.html#cb4-19" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;RColorBrewer&quot;</span>)</span>
+<span id="cb4-20"><a href="the-pipeline.html#cb4-20" tabindex="-1"></a>  <span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb4-21"><a href="the-pipeline.html#cb4-21" tabindex="-1"></a>}</span>
+<span id="cb4-22"><a href="the-pipeline.html#cb4-22" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="the-pipeline.html#cb4-23" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(rnaturalearth)) {</span>
+<span id="cb4-24"><a href="the-pipeline.html#cb4-24" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;rnaturalearth&quot;</span>)</span>
+<span id="cb4-25"><a href="the-pipeline.html#cb4-25" tabindex="-1"></a>  <span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb4-26"><a href="the-pipeline.html#cb4-26" tabindex="-1"></a>}</span>
+<span id="cb4-27"><a href="the-pipeline.html#cb4-27" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="the-pipeline.html#cb4-28" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(rnaturalearthdata)) {</span>
+<span id="cb4-29"><a href="the-pipeline.html#cb4-29" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;rnaturalearthdata&quot;</span>)</span>
+<span id="cb4-30"><a href="the-pipeline.html#cb4-30" tabindex="-1"></a>  <span class="fu">library</span>(rnaturalearthdata)</span>
+<span id="cb4-31"><a href="the-pipeline.html#cb4-31" tabindex="-1"></a>}</span>
+<span id="cb4-32"><a href="the-pipeline.html#cb4-32" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="the-pipeline.html#cb4-33" tabindex="-1"></a><span class="do">## set folder names</span></span>
+<span id="cb4-34"><a href="the-pipeline.html#cb4-34" tabindex="-1"></a>folder_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;data_derived&quot;</span>, <span class="st">&quot;data_provided&quot;</span>, <span class="st">&quot;figures_and_tables&quot;</span>)</span>
+<span id="cb4-35"><a href="the-pipeline.html#cb4-35" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="the-pipeline.html#cb4-36" tabindex="-1"></a><span class="cf">for</span> (folder_name <span class="cf">in</span> folder_names) {</span>
+<span id="cb4-37"><a href="the-pipeline.html#cb4-37" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(folder_name)) {</span>
+<span id="cb4-38"><a href="the-pipeline.html#cb4-38" tabindex="-1"></a>    <span class="fu">dir.create</span>(folder_name)</span>
+<span id="cb4-39"><a href="the-pipeline.html#cb4-39" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Folder&quot;</span>, folder_name, <span class="st">&quot;created.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb4-40"><a href="the-pipeline.html#cb4-40" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb4-41"><a href="the-pipeline.html#cb4-41" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Folder&quot;</span>, folder_name, <span class="st">&quot;already exists.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb4-42"><a href="the-pipeline.html#cb4-42" tabindex="-1"></a>  }</span>
+<span id="cb4-43"><a href="the-pipeline.html#cb4-43" tabindex="-1"></a>}</span>
+<span id="cb4-44"><a href="the-pipeline.html#cb4-44" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="the-pipeline.html#cb4-45" tabindex="-1"></a><span class="do">## source functions</span></span>
+<span id="cb4-46"><a href="the-pipeline.html#cb4-46" tabindex="-1"></a>file_list <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;R&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.R$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-47"><a href="the-pipeline.html#cb4-47" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="the-pipeline.html#cb4-48" tabindex="-1"></a><span class="co"># Source each .R file</span></span>
+<span id="cb4-49"><a href="the-pipeline.html#cb4-49" tabindex="-1"></a><span class="cf">for</span> (file <span class="cf">in</span> file_list) {</span>
+<span id="cb4-50"><a href="the-pipeline.html#cb4-50" tabindex="-1"></a>  <span class="fu">source</span>(file)</span>
+<span id="cb4-51"><a href="the-pipeline.html#cb4-51" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="run.r" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> run.R<a href="the-pipeline.html#run.r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>source(&quot;config.R&quot;)
-
-### 1. Download ####
-# Use the function to download SDGs data
-do_get_sdg_api()
-
-### 2. Data cleaning ####
-# Function to clean the data downloaded
-indat &lt;- do_clean()
-
-### 3. Tabulating ####
-tab &lt;- do_tab_country(indat, country = &quot;Indonesia&quot;)
-
-### 4. Visualise ####
-# Generate and interactive plot with the data cleaned
-do_plot()
-
-### 5. Map ####
-do_map()</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="the-pipeline.html#cb5-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;config.R&quot;</span>)</span>
+<span id="cb5-2"><a href="the-pipeline.html#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="the-pipeline.html#cb5-3" tabindex="-1"></a><span class="do">### 1. Download ####</span></span>
+<span id="cb5-4"><a href="the-pipeline.html#cb5-4" tabindex="-1"></a><span class="co"># Use the function to download SDGs data</span></span>
+<span id="cb5-5"><a href="the-pipeline.html#cb5-5" tabindex="-1"></a><span class="fu">do_get_sdg_api</span>()</span>
+<span id="cb5-6"><a href="the-pipeline.html#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="the-pipeline.html#cb5-7" tabindex="-1"></a><span class="do">### 2. Data cleaning ####</span></span>
+<span id="cb5-8"><a href="the-pipeline.html#cb5-8" tabindex="-1"></a><span class="co"># Function to clean the data downloaded</span></span>
+<span id="cb5-9"><a href="the-pipeline.html#cb5-9" tabindex="-1"></a>indat <span class="ot">&lt;-</span> <span class="fu">do_clean</span>()</span>
+<span id="cb5-10"><a href="the-pipeline.html#cb5-10" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="the-pipeline.html#cb5-11" tabindex="-1"></a><span class="do">### 3. Tabulating ####</span></span>
+<span id="cb5-12"><a href="the-pipeline.html#cb5-12" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">do_tab_country</span>(indat, <span class="at">country =</span> <span class="st">&quot;Indonesia&quot;</span>)</span>
+<span id="cb5-13"><a href="the-pipeline.html#cb5-13" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="the-pipeline.html#cb5-14" tabindex="-1"></a><span class="do">### 4. Visualise ####</span></span>
+<span id="cb5-15"><a href="the-pipeline.html#cb5-15" tabindex="-1"></a><span class="co"># Generate and interactive plot with the data cleaned</span></span>
+<span id="cb5-16"><a href="the-pipeline.html#cb5-16" tabindex="-1"></a><span class="fu">do_plot</span>()</span>
+<span id="cb5-17"><a href="the-pipeline.html#cb5-17" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="the-pipeline.html#cb5-18" tabindex="-1"></a><span class="do">### 5. Map ####</span></span>
+<span id="cb5-19"><a href="the-pipeline.html#cb5-19" tabindex="-1"></a><span class="fu">do_map</span>()</span></code></pre></div>
 </div>
 <div id="do_get_sdg_api" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> do_get_sdg_api<a href="the-pipeline.html#do_get_sdg_api" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>do_get_sdg_api &lt;- function(
-    output = &quot;data_derived/sdg_14.csv&quot;
-){
-  # (Client URL) command line tool that enables data exchange between a device 
-  # and a server through a terminal
-  curl &lt;- paste0(
-    &#39;curl -X POST --header &quot;Content-Type: application/x-www-form-urlencoded&quot; &#39;,
-    &#39;--header &quot;Accept: application/octet-stream&quot; &#39;,
-    &#39;-d &quot;goal=14&quot; &#39;,
-    &#39;&quot;https://unstats.un.org/sdgapi/v1/sdg/Goal/DataCSV&quot; -o&#39;, 
-    output)
-  
-  # Execute cURL
-  system(curl)
-}</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="the-pipeline.html#cb6-1" tabindex="-1"></a>do_get_sdg_api <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb6-2"><a href="the-pipeline.html#cb6-2" tabindex="-1"></a>    <span class="at">output =</span> <span class="st">&quot;data_derived/sdg_14.csv&quot;</span></span>
+<span id="cb6-3"><a href="the-pipeline.html#cb6-3" tabindex="-1"></a>){</span>
+<span id="cb6-4"><a href="the-pipeline.html#cb6-4" tabindex="-1"></a>  <span class="co"># (Client URL) command line tool that enables data exchange between a device </span></span>
+<span id="cb6-5"><a href="the-pipeline.html#cb6-5" tabindex="-1"></a>  <span class="co"># and a server through a terminal</span></span>
+<span id="cb6-6"><a href="the-pipeline.html#cb6-6" tabindex="-1"></a>  curl <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb6-7"><a href="the-pipeline.html#cb6-7" tabindex="-1"></a>    <span class="st">&#39;curl -X POST --header &quot;Content-Type: application/x-www-form-urlencoded&quot; &#39;</span>,</span>
+<span id="cb6-8"><a href="the-pipeline.html#cb6-8" tabindex="-1"></a>    <span class="st">&#39;--header &quot;Accept: application/octet-stream&quot; &#39;</span>,</span>
+<span id="cb6-9"><a href="the-pipeline.html#cb6-9" tabindex="-1"></a>    <span class="st">&#39;-d &quot;goal=14&quot; &#39;</span>,</span>
+<span id="cb6-10"><a href="the-pipeline.html#cb6-10" tabindex="-1"></a>    <span class="st">&#39;&quot;https://unstats.un.org/sdgapi/v1/sdg/Goal/DataCSV&quot; -o&#39;</span>, </span>
+<span id="cb6-11"><a href="the-pipeline.html#cb6-11" tabindex="-1"></a>    output)</span>
+<span id="cb6-12"><a href="the-pipeline.html#cb6-12" tabindex="-1"></a>  </span>
+<span id="cb6-13"><a href="the-pipeline.html#cb6-13" tabindex="-1"></a>  <span class="co"># Execute cURL</span></span>
+<span id="cb6-14"><a href="the-pipeline.html#cb6-14" tabindex="-1"></a>  <span class="fu">system</span>(curl)</span>
+<span id="cb6-15"><a href="the-pipeline.html#cb6-15" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="do_clean" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> do_clean<a href="the-pipeline.html#do_clean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>do_clean &lt;- function() {
-  # options(scipen = 1000)
-  # Load data
-  indat &lt;- fread(file.path(&quot;data_derived&quot;, &quot;sdg_14.csv&quot;))
-  # mapping  &lt;- fread(file.path(&quot;data_provided&quot;, &quot;country-to-region-mapping.csv&quot;))
-  
-  # Keep only the values that are either blank or &#39;A&#39; under &#39;Observation Status&#39;, drop the rest
-  indat &lt;- indat[`[Observation Status]` == &quot;&quot; | `[Observation Status]` == &quot;A&quot;]
-  
-  # Replace &#39;-&#39; with &#39;_&#39; across all disaggregation values
-  cols_to_replace &lt;- grep(&quot;\\[.*\\]&quot;,
-                          names(indat), 
-                          value = TRUE)
-  indat[, (cols_to_replace) := lapply(.SD, function(x) gsub(&quot;-&quot;, &quot;_&quot;, x)), 
-        .SDcols = cols_to_replace]
-  return(indat)
-}</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-pipeline.html#cb7-1" tabindex="-1"></a>do_clean <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb7-2"><a href="the-pipeline.html#cb7-2" tabindex="-1"></a>  <span class="co"># options(scipen = 1000)</span></span>
+<span id="cb7-3"><a href="the-pipeline.html#cb7-3" tabindex="-1"></a>  <span class="co"># Load data</span></span>
+<span id="cb7-4"><a href="the-pipeline.html#cb7-4" tabindex="-1"></a>  indat <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(<span class="st">&quot;data_derived&quot;</span>, <span class="st">&quot;sdg_14.csv&quot;</span>))</span>
+<span id="cb7-5"><a href="the-pipeline.html#cb7-5" tabindex="-1"></a>  <span class="co"># mapping  &lt;- fread(file.path(&quot;data_provided&quot;, &quot;country-to-region-mapping.csv&quot;))</span></span>
+<span id="cb7-6"><a href="the-pipeline.html#cb7-6" tabindex="-1"></a>  </span>
+<span id="cb7-7"><a href="the-pipeline.html#cb7-7" tabindex="-1"></a>  <span class="co"># Keep only the values that are either blank or &#39;A&#39; under &#39;Observation Status&#39;, drop the rest</span></span>
+<span id="cb7-8"><a href="the-pipeline.html#cb7-8" tabindex="-1"></a>  indat <span class="ot">&lt;-</span> indat[<span class="st">`</span><span class="at">[Observation Status]</span><span class="st">`</span> <span class="sc">==</span> <span class="st">&quot;&quot;</span> <span class="sc">|</span> <span class="st">`</span><span class="at">[Observation Status]</span><span class="st">`</span> <span class="sc">==</span> <span class="st">&quot;A&quot;</span>]</span>
+<span id="cb7-9"><a href="the-pipeline.html#cb7-9" tabindex="-1"></a>  </span>
+<span id="cb7-10"><a href="the-pipeline.html#cb7-10" tabindex="-1"></a>  <span class="co"># Replace &#39;-&#39; with &#39;_&#39; across all disaggregation values</span></span>
+<span id="cb7-11"><a href="the-pipeline.html#cb7-11" tabindex="-1"></a>  cols_to_replace <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">[.*</span><span class="sc">\\</span><span class="st">]&quot;</span>,</span>
+<span id="cb7-12"><a href="the-pipeline.html#cb7-12" tabindex="-1"></a>                          <span class="fu">names</span>(indat), </span>
+<span id="cb7-13"><a href="the-pipeline.html#cb7-13" tabindex="-1"></a>                          <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-14"><a href="the-pipeline.html#cb7-14" tabindex="-1"></a>  indat[, (cols_to_replace) <span class="sc">:=</span> <span class="fu">lapply</span>(.SD, <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;-&quot;</span>, <span class="st">&quot;_&quot;</span>, x)), </span>
+<span id="cb7-15"><a href="the-pipeline.html#cb7-15" tabindex="-1"></a>        .SDcols <span class="ot">=</span> cols_to_replace]</span>
+<span id="cb7-16"><a href="the-pipeline.html#cb7-16" tabindex="-1"></a>  <span class="fu">return</span>(indat)</span>
+<span id="cb7-17"><a href="the-pipeline.html#cb7-17" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="do_tab_country" class="section level2 hasAnchor" number="6.6">
 <h2><span class="header-section-number">6.6</span> do_tab_country<a href="the-pipeline.html#do_tab_country" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>do_tab_country &lt;- function(
-    indat,
-    country
-){
-# Filter the input data for the specified country  
-foo &lt;- indat[GeoAreaName == country]
-
-# Select specific columns from the filtered data
-foo14 &lt;- foo[, .(Indicator,
-                 SeriesDescription,
-                 TimePeriod,
-                 Source)]
-
-# Convert TimePeriod column to numeric for easier calculations
-foo14[, NumericTimePeriod := as.numeric(TimePeriod)]
-
-# Calculate min and max year for each SeriesDescription using TimePeriod
-time_ranges &lt;- foo14[, .(
-  StartYear = min(NumericTimePeriod, na.rm = TRUE),
-  EndYear = max(NumericTimePeriod, na.rm = TRUE)
-), by = SeriesDescription]
-
-# Create a time range string (e.g., &quot;2000-2020&quot; or &quot;2000&quot; if start and end year are the same)
-time_ranges[, TimeRange := ifelse(StartYear == EndYear, as.character(StartYear), paste(StartYear, EndYear, sep = &quot;-&quot;))]
-
-# Merge the new time range back to the main data.table
-foo14 &lt;- merge(foo14, time_ranges, by = &quot;SeriesDescription&quot;, all.x = TRUE)
-
-# Drop temporary columns that are no longer needed
-foo14[, NumericTimePeriod := NULL]
-foo14[, StartYear := NULL]
-foo14[, EndYear := NULL]
-foo14[, TimePeriod := NULL]
-
-# Keep unique rows based on SeriesDescription
-unq &lt;- unique(foo14, by = &quot;SeriesDescription&quot;)
-
-# Select the final columns to include in the output
-unq &lt;- unq[, .(Indicator, SeriesDescription, TimeRange, Source)]
-
-# Define the output file name based on the country
-out_name &lt;- paste0(&quot;data_derived/&quot;, country, &quot;_SDG_14.csv&quot;)
-
-# Write the data to a CSV file
-fwrite(unq, out_name)
-
-return(unq)
-}</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="the-pipeline.html#cb8-1" tabindex="-1"></a>do_tab_country <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb8-2"><a href="the-pipeline.html#cb8-2" tabindex="-1"></a>    indat,</span>
+<span id="cb8-3"><a href="the-pipeline.html#cb8-3" tabindex="-1"></a>    country</span>
+<span id="cb8-4"><a href="the-pipeline.html#cb8-4" tabindex="-1"></a>){</span>
+<span id="cb8-5"><a href="the-pipeline.html#cb8-5" tabindex="-1"></a><span class="co"># Filter the input data for the specified country  </span></span>
+<span id="cb8-6"><a href="the-pipeline.html#cb8-6" tabindex="-1"></a>foo <span class="ot">&lt;-</span> indat[GeoAreaName <span class="sc">==</span> country]</span>
+<span id="cb8-7"><a href="the-pipeline.html#cb8-7" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="the-pipeline.html#cb8-8" tabindex="-1"></a><span class="co"># Select specific columns from the filtered data</span></span>
+<span id="cb8-9"><a href="the-pipeline.html#cb8-9" tabindex="-1"></a>foo14 <span class="ot">&lt;-</span> foo[, .(Indicator,</span>
+<span id="cb8-10"><a href="the-pipeline.html#cb8-10" tabindex="-1"></a>                 SeriesDescription,</span>
+<span id="cb8-11"><a href="the-pipeline.html#cb8-11" tabindex="-1"></a>                 TimePeriod,</span>
+<span id="cb8-12"><a href="the-pipeline.html#cb8-12" tabindex="-1"></a>                 Source)]</span>
+<span id="cb8-13"><a href="the-pipeline.html#cb8-13" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="the-pipeline.html#cb8-14" tabindex="-1"></a><span class="co"># Convert TimePeriod column to numeric for easier calculations</span></span>
+<span id="cb8-15"><a href="the-pipeline.html#cb8-15" tabindex="-1"></a>foo14[, NumericTimePeriod <span class="sc">:=</span> <span class="fu">as.numeric</span>(TimePeriod)]</span>
+<span id="cb8-16"><a href="the-pipeline.html#cb8-16" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="the-pipeline.html#cb8-17" tabindex="-1"></a><span class="co"># Calculate min and max year for each SeriesDescription using TimePeriod</span></span>
+<span id="cb8-18"><a href="the-pipeline.html#cb8-18" tabindex="-1"></a>time_ranges <span class="ot">&lt;-</span> foo14[, .(</span>
+<span id="cb8-19"><a href="the-pipeline.html#cb8-19" tabindex="-1"></a>  <span class="at">StartYear =</span> <span class="fu">min</span>(NumericTimePeriod, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-20"><a href="the-pipeline.html#cb8-20" tabindex="-1"></a>  <span class="at">EndYear =</span> <span class="fu">max</span>(NumericTimePeriod, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-21"><a href="the-pipeline.html#cb8-21" tabindex="-1"></a>), by <span class="ot">=</span> SeriesDescription]</span>
+<span id="cb8-22"><a href="the-pipeline.html#cb8-22" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="the-pipeline.html#cb8-23" tabindex="-1"></a><span class="co"># Create a time range string (e.g., &quot;2000-2020&quot; or &quot;2000&quot; if start and end year are the same)</span></span>
+<span id="cb8-24"><a href="the-pipeline.html#cb8-24" tabindex="-1"></a>time_ranges[, TimeRange <span class="sc">:=</span> <span class="fu">ifelse</span>(StartYear <span class="sc">==</span> EndYear, <span class="fu">as.character</span>(StartYear), <span class="fu">paste</span>(StartYear, EndYear, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>))]</span>
+<span id="cb8-25"><a href="the-pipeline.html#cb8-25" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="the-pipeline.html#cb8-26" tabindex="-1"></a><span class="co"># Merge the new time range back to the main data.table</span></span>
+<span id="cb8-27"><a href="the-pipeline.html#cb8-27" tabindex="-1"></a>foo14 <span class="ot">&lt;-</span> <span class="fu">merge</span>(foo14, time_ranges, <span class="at">by =</span> <span class="st">&quot;SeriesDescription&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-28"><a href="the-pipeline.html#cb8-28" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="the-pipeline.html#cb8-29" tabindex="-1"></a><span class="co"># Drop temporary columns that are no longer needed</span></span>
+<span id="cb8-30"><a href="the-pipeline.html#cb8-30" tabindex="-1"></a>foo14[, NumericTimePeriod <span class="sc">:=</span> <span class="cn">NULL</span>]</span>
+<span id="cb8-31"><a href="the-pipeline.html#cb8-31" tabindex="-1"></a>foo14[, StartYear <span class="sc">:=</span> <span class="cn">NULL</span>]</span>
+<span id="cb8-32"><a href="the-pipeline.html#cb8-32" tabindex="-1"></a>foo14[, EndYear <span class="sc">:=</span> <span class="cn">NULL</span>]</span>
+<span id="cb8-33"><a href="the-pipeline.html#cb8-33" tabindex="-1"></a>foo14[, TimePeriod <span class="sc">:=</span> <span class="cn">NULL</span>]</span>
+<span id="cb8-34"><a href="the-pipeline.html#cb8-34" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="the-pipeline.html#cb8-35" tabindex="-1"></a><span class="co"># Keep unique rows based on SeriesDescription</span></span>
+<span id="cb8-36"><a href="the-pipeline.html#cb8-36" tabindex="-1"></a>unq <span class="ot">&lt;-</span> <span class="fu">unique</span>(foo14, <span class="at">by =</span> <span class="st">&quot;SeriesDescription&quot;</span>)</span>
+<span id="cb8-37"><a href="the-pipeline.html#cb8-37" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="the-pipeline.html#cb8-38" tabindex="-1"></a><span class="co"># Select the final columns to include in the output</span></span>
+<span id="cb8-39"><a href="the-pipeline.html#cb8-39" tabindex="-1"></a>unq <span class="ot">&lt;-</span> unq[, .(Indicator, SeriesDescription, TimeRange, Source)]</span>
+<span id="cb8-40"><a href="the-pipeline.html#cb8-40" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="the-pipeline.html#cb8-41" tabindex="-1"></a><span class="co"># Define the output file name based on the country</span></span>
+<span id="cb8-42"><a href="the-pipeline.html#cb8-42" tabindex="-1"></a>out_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;data_derived/&quot;</span>, country, <span class="st">&quot;_SDG_14.csv&quot;</span>)</span>
+<span id="cb8-43"><a href="the-pipeline.html#cb8-43" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="the-pipeline.html#cb8-44" tabindex="-1"></a><span class="co"># Write the data to a CSV file</span></span>
+<span id="cb8-45"><a href="the-pipeline.html#cb8-45" tabindex="-1"></a><span class="fu">fwrite</span>(unq, out_name)</span>
+<span id="cb8-46"><a href="the-pipeline.html#cb8-46" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="the-pipeline.html#cb8-47" tabindex="-1"></a><span class="fu">return</span>(unq)</span>
+<span id="cb8-48"><a href="the-pipeline.html#cb8-48" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="do_plot" class="section level2 hasAnchor" number="6.7">
 <h2><span class="header-section-number">6.7</span> do_plot<a href="the-pipeline.html#do_plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>do_plot &lt;- function(){
-
-  # Subset the data to only include rows where the Indicator is &quot;14.7.1&quot;
-  sdg1471 &lt;- indat[Indicator==&quot;14.7.1&quot;]
-  
-  # Order the subsetted data by GeoAreaName in ascending order
-  sdg1471 &lt;- sdg1471[order(sdg1471$GeoAreaName, decreasing = FALSE)]
-  
-  # Display the unique GeoAreaNames in the subsetted and ordered data
-  unique(sdg1471$GeoAreaName)
-  
-  # Further subset the data to only include rows where the GeoAreaName is &quot;Indonesia&quot;
-  sdg1471_ind &lt;- sdg1471[GeoAreaName==&quot;Indonesia&quot;]
-  
-  # Let&#39;s make a simple plot using base R
-  plot(
-    sdg1471_ind$TimePeriod,
-    sdg1471_ind$Value
-  )
-  
-  # Some improvements: 
-  # type = &quot;l&quot;
-  # col = &quot;blue&quot;
-  # lwd = 2
-  # main = &quot;Sustainable Fisheries as a proportion of GDP in Indonesia&quot;
-  # xlab = &quot;Year&quot;
-  # ylab = &quot;(%)&quot;
-  
-  # Comparing Indonesia with other countries, subsetting first
-  sdg1471_comp &lt;- sdg1471[GeoAreaName %in% c(&quot;Indonesia&quot;, &quot;Malaysia&quot;, &quot;Cook Islands&quot;)]
-
-  # Create the plot using ggplot2
-  ggplot(sdg1471_comp, 
-         aes(x = TimePeriod, y = Value, color = GeoAreaName, group = GeoAreaName)) +
-    geom_line(size = 1.2) +
-    labs(title = &quot;Sustainable Fisheries as a proportion of GDP&quot;,
-         x = &quot;Year&quot;,
-         y = &quot;(%)&quot;,
-         color = &quot;Country&quot;) +
-    theme_minimal()
-  
-  # Include world averages for comparison
-  sdg1471_comp_two &lt;- sdg1471[GeoAreaName %in% c(&quot;Indonesia&quot;, &quot;Malaysia&quot;, &quot;Cook Islands&quot;, &quot;World&quot;)]
-  
-  # Create the plot using ggplot2
- p &lt;-  ggplot(sdg1471_comp_two, 
-         aes(x = TimePeriod, y = Value, color = GeoAreaName, group = GeoAreaName)) +
-    geom_line(size = 1.2) +
-    labs(title = &quot;Sustainable Fisheries as a proportion of GDP (including World average)&quot;,
-         x = &quot;Year&quot;,
-         y = &quot;(%)&quot;,
-         color = &quot;Country&quot;) +
-    theme_minimal()
-  
-return(p)
-}</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="the-pipeline.html#cb9-1" tabindex="-1"></a>do_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb9-2"><a href="the-pipeline.html#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="the-pipeline.html#cb9-3" tabindex="-1"></a>  <span class="co"># Subset the data to only include rows where the Indicator is &quot;14.7.1&quot;</span></span>
+<span id="cb9-4"><a href="the-pipeline.html#cb9-4" tabindex="-1"></a>  sdg1471 <span class="ot">&lt;-</span> indat[Indicator<span class="sc">==</span><span class="st">&quot;14.7.1&quot;</span>]</span>
+<span id="cb9-5"><a href="the-pipeline.html#cb9-5" tabindex="-1"></a>  </span>
+<span id="cb9-6"><a href="the-pipeline.html#cb9-6" tabindex="-1"></a>  <span class="co"># Order the subsetted data by GeoAreaName in ascending order</span></span>
+<span id="cb9-7"><a href="the-pipeline.html#cb9-7" tabindex="-1"></a>  sdg1471 <span class="ot">&lt;-</span> sdg1471[<span class="fu">order</span>(sdg1471<span class="sc">$</span>GeoAreaName, <span class="at">decreasing =</span> <span class="cn">FALSE</span>)]</span>
+<span id="cb9-8"><a href="the-pipeline.html#cb9-8" tabindex="-1"></a>  </span>
+<span id="cb9-9"><a href="the-pipeline.html#cb9-9" tabindex="-1"></a>  <span class="co"># Display the unique GeoAreaNames in the subsetted and ordered data</span></span>
+<span id="cb9-10"><a href="the-pipeline.html#cb9-10" tabindex="-1"></a>  <span class="fu">unique</span>(sdg1471<span class="sc">$</span>GeoAreaName)</span>
+<span id="cb9-11"><a href="the-pipeline.html#cb9-11" tabindex="-1"></a>  </span>
+<span id="cb9-12"><a href="the-pipeline.html#cb9-12" tabindex="-1"></a>  <span class="co"># Further subset the data to only include rows where the GeoAreaName is &quot;Indonesia&quot;</span></span>
+<span id="cb9-13"><a href="the-pipeline.html#cb9-13" tabindex="-1"></a>  sdg1471_ind <span class="ot">&lt;-</span> sdg1471[GeoAreaName<span class="sc">==</span><span class="st">&quot;Indonesia&quot;</span>]</span>
+<span id="cb9-14"><a href="the-pipeline.html#cb9-14" tabindex="-1"></a>  </span>
+<span id="cb9-15"><a href="the-pipeline.html#cb9-15" tabindex="-1"></a>  <span class="co"># Let&#39;s make a simple plot using base R</span></span>
+<span id="cb9-16"><a href="the-pipeline.html#cb9-16" tabindex="-1"></a>  <span class="fu">plot</span>(</span>
+<span id="cb9-17"><a href="the-pipeline.html#cb9-17" tabindex="-1"></a>    sdg1471_ind<span class="sc">$</span>TimePeriod,</span>
+<span id="cb9-18"><a href="the-pipeline.html#cb9-18" tabindex="-1"></a>    sdg1471_ind<span class="sc">$</span>Value</span>
+<span id="cb9-19"><a href="the-pipeline.html#cb9-19" tabindex="-1"></a>  )</span>
+<span id="cb9-20"><a href="the-pipeline.html#cb9-20" tabindex="-1"></a>  </span>
+<span id="cb9-21"><a href="the-pipeline.html#cb9-21" tabindex="-1"></a>  <span class="co"># Some improvements: </span></span>
+<span id="cb9-22"><a href="the-pipeline.html#cb9-22" tabindex="-1"></a>  <span class="co"># type = &quot;l&quot;</span></span>
+<span id="cb9-23"><a href="the-pipeline.html#cb9-23" tabindex="-1"></a>  <span class="co"># col = &quot;blue&quot;</span></span>
+<span id="cb9-24"><a href="the-pipeline.html#cb9-24" tabindex="-1"></a>  <span class="co"># lwd = 2</span></span>
+<span id="cb9-25"><a href="the-pipeline.html#cb9-25" tabindex="-1"></a>  <span class="co"># main = &quot;Sustainable Fisheries as a proportion of GDP in Indonesia&quot;</span></span>
+<span id="cb9-26"><a href="the-pipeline.html#cb9-26" tabindex="-1"></a>  <span class="co"># xlab = &quot;Year&quot;</span></span>
+<span id="cb9-27"><a href="the-pipeline.html#cb9-27" tabindex="-1"></a>  <span class="co"># ylab = &quot;(%)&quot;</span></span>
+<span id="cb9-28"><a href="the-pipeline.html#cb9-28" tabindex="-1"></a>  </span>
+<span id="cb9-29"><a href="the-pipeline.html#cb9-29" tabindex="-1"></a>  <span class="co"># Comparing Indonesia with other countries, subsetting first</span></span>
+<span id="cb9-30"><a href="the-pipeline.html#cb9-30" tabindex="-1"></a>  sdg1471_comp <span class="ot">&lt;-</span> sdg1471[GeoAreaName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Indonesia&quot;</span>, <span class="st">&quot;Malaysia&quot;</span>, <span class="st">&quot;Cook Islands&quot;</span>)]</span>
+<span id="cb9-31"><a href="the-pipeline.html#cb9-31" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="the-pipeline.html#cb9-32" tabindex="-1"></a>  <span class="co"># Create the plot using ggplot2</span></span>
+<span id="cb9-33"><a href="the-pipeline.html#cb9-33" tabindex="-1"></a>  <span class="fu">ggplot</span>(sdg1471_comp, </span>
+<span id="cb9-34"><a href="the-pipeline.html#cb9-34" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="at">x =</span> TimePeriod, <span class="at">y =</span> Value, <span class="at">color =</span> GeoAreaName, <span class="at">group =</span> GeoAreaName)) <span class="sc">+</span></span>
+<span id="cb9-35"><a href="the-pipeline.html#cb9-35" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb9-36"><a href="the-pipeline.html#cb9-36" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sustainable Fisheries as a proportion of GDP&quot;</span>,</span>
+<span id="cb9-37"><a href="the-pipeline.html#cb9-37" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb9-38"><a href="the-pipeline.html#cb9-38" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;(%)&quot;</span>,</span>
+<span id="cb9-39"><a href="the-pipeline.html#cb9-39" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">&quot;Country&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-40"><a href="the-pipeline.html#cb9-40" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb9-41"><a href="the-pipeline.html#cb9-41" tabindex="-1"></a>  </span>
+<span id="cb9-42"><a href="the-pipeline.html#cb9-42" tabindex="-1"></a>  <span class="co"># Include world averages for comparison</span></span>
+<span id="cb9-43"><a href="the-pipeline.html#cb9-43" tabindex="-1"></a>  sdg1471_comp_two <span class="ot">&lt;-</span> sdg1471[GeoAreaName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Indonesia&quot;</span>, <span class="st">&quot;Malaysia&quot;</span>, <span class="st">&quot;Cook Islands&quot;</span>, <span class="st">&quot;World&quot;</span>)]</span>
+<span id="cb9-44"><a href="the-pipeline.html#cb9-44" tabindex="-1"></a>  </span>
+<span id="cb9-45"><a href="the-pipeline.html#cb9-45" tabindex="-1"></a>  <span class="co"># Create the plot using ggplot2</span></span>
+<span id="cb9-46"><a href="the-pipeline.html#cb9-46" tabindex="-1"></a> p <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(sdg1471_comp_two, </span>
+<span id="cb9-47"><a href="the-pipeline.html#cb9-47" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="at">x =</span> TimePeriod, <span class="at">y =</span> Value, <span class="at">color =</span> GeoAreaName, <span class="at">group =</span> GeoAreaName)) <span class="sc">+</span></span>
+<span id="cb9-48"><a href="the-pipeline.html#cb9-48" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb9-49"><a href="the-pipeline.html#cb9-49" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sustainable Fisheries as a proportion of GDP (including World average)&quot;</span>,</span>
+<span id="cb9-50"><a href="the-pipeline.html#cb9-50" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb9-51"><a href="the-pipeline.html#cb9-51" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;(%)&quot;</span>,</span>
+<span id="cb9-52"><a href="the-pipeline.html#cb9-52" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">&quot;Country&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-53"><a href="the-pipeline.html#cb9-53" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb9-54"><a href="the-pipeline.html#cb9-54" tabindex="-1"></a>  </span>
+<span id="cb9-55"><a href="the-pipeline.html#cb9-55" tabindex="-1"></a><span class="fu">return</span>(p)</span>
+<span id="cb9-56"><a href="the-pipeline.html#cb9-56" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="do_map" class="section level2 hasAnchor" number="6.8">
 <h2><span class="header-section-number">6.8</span> do_map<a href="the-pipeline.html#do_map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>do_map &lt;- function()
-{
-# United Nations Convention on the Law of the Sea (UNCLOS)
-  
-  # Indicator 14.c.1: Number of countries making progress in ratifying, 
-  # accepting and implementing through legal, policy and institutional frameworks, 
-  # ocean-related instruments that implement international law, as reflected in 
-  # the United Nations Convention on the Law of the Sea, for the conservation and 
-  # sustainable use of the oceans and their resources
-  
-foo &lt;- indat[SeriesCode == &quot;ER_UNCLOS_RATACC&quot; | SeriesCode == &quot;ER_UNCLOS_IMPLE&quot;]
-
-foo1 &lt;- foo[SeriesCode == &quot;ER_UNCLOS_RATACC&quot;, .SD[which.max(as.numeric(TimePeriod))], by = GeoAreaName]
-
-foo2&lt;- foo[SeriesCode == &quot;ER_UNCLOS_IMPLE&quot;, .SD[which.max(as.numeric(TimePeriod))], by = GeoAreaName] 
-
-# Get country polygons
-world &lt;- rnaturalearth::ne_countries(scale = &quot;medium&quot;, returnclass = &quot;sf&quot;)
-
-setnames(foo1, &quot;GeoAreaName&quot;, &quot;name&quot;)
-setnames(foo2, &quot;GeoAreaName&quot;, &quot;name&quot;)
-
-foo2_names &lt;- unique(foo2$name)
-foo1_names &lt;- unique(foo1$name)
-world_names &lt;- unique(world$name)
-names_diff_foo2_world &lt;- setdiff(foo2_names, world_names)
-names_diff_foo1_world &lt;- setdiff(foo1_names, world_names)
- 
-print(&quot;Names in foo2 not in world:&quot;)
-print(names_diff_foo2_world)
-print(names_diff_foo1_world)
-
-foo2[name == &quot;Republic of Korea&quot;, name := &quot;South Korea&quot;]
-foo2[name == &quot;United Kingdom of Great Britain and Northern Ireland&quot;, name := &quot;United Kingdom&quot;]
-foo2[name == &quot;Russian Federation&quot;, name := &quot;Russia&quot;]
-foo2[name == &quot;Venezuela (Bolivarian Republic of)&quot;, name := &quot;Venezuela&quot;]
-
-foo1[name == &quot;Republic of Korea&quot;, name := &quot;South Korea&quot;]
-foo1[name == &quot;United Kingdom of Great Britain and Northern Ireland&quot;, name := &quot;United Kingdom&quot;]
-foo1[name == &quot;Russian Federation&quot;, name := &quot;Russia&quot;]
-foo1[name == &quot;Venezuela (Bolivarian Republic of)&quot;, name := &quot;Venezuela&quot;]
-
-foo2_imple &lt;- foo2[SeriesCode == &quot;ER_UNCLOS_IMPLE&quot;]
-foo1_rat &lt;- foo1[SeriesCode == &quot;ER_UNCLOS_RATACC&quot;]
-
-foo3 &lt;- rbind(foo2_imple, foo1_rat)
-
-foo3_map &lt;- merge(world, foo3, by = &quot;name&quot;, all.x = TRUE, fill = TRUE)
-
-setDT(foo3_map)
-
-# Replace NaN and NA in &#39;Value&#39; with NA for uniform handling
-foo3_map[, Value := fifelse(is.nan(Value) | is.na(Value), as.numeric(NA), Value)]
-
-foo3_map[, ValueFactor := cut(Value, breaks = c(0, 50, 69, 79, 89, 100),
-                              include.lowest = TRUE, right = TRUE,
-                              labels = c(&quot;0-50%&quot;, &quot;51-69%&quot;, &quot;70-79%&quot;, &quot;80-89%&quot;, &quot;90-100%&quot;))]
-
-foo4 &lt;- foo3_map[!is.na(foo3_map$Value)]
-foo5 &lt;- foo4[, c(&quot;name&quot;, &quot;Value&quot;, &quot;Indicator&quot;, &quot;TimePeriod&quot;, &quot;SeriesDescription&quot;), drop = FALSE]
-write.csv(foo5, &quot;data_derived/sdg_14_unclos_map.csv&quot;, row.names = FALSE)
-
-foo3_map &lt;- st_as_sf(foo3_map)
-
-equal_earth_projection &lt;- st_crs(&quot;+proj=eqearth +datum=WGS84&quot;)
-
-p &lt;- ggplot(data = foo3_map) +
-  geom_sf(aes(geometry = geometry, fill = ValueFactor), color = &quot;white&quot;, size = 0.2) +
-  scale_fill_brewer(palette = &quot;YlGnBu&quot;, name = &quot;&quot;, na.value = &quot;grey&quot;) +
-  coord_sf(crs = equal_earth_projection, datum = NA) +  # Apply Equal Earth projection
-  theme(
-    panel.background = element_rect(fill = &quot;white&quot;),
-    legend.position = &quot;top&quot;
-  )
-
-ggsave(&quot;figures_and_tables/fig_map.png&quot;, plot = p, width = 10, height = 6, dpi = 300, units = &quot;in&quot;)
-
-}</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="the-pipeline.html#cb10-1" tabindex="-1"></a>do_map <span class="ot">&lt;-</span> <span class="cf">function</span>()</span>
+<span id="cb10-2"><a href="the-pipeline.html#cb10-2" tabindex="-1"></a>{</span>
+<span id="cb10-3"><a href="the-pipeline.html#cb10-3" tabindex="-1"></a><span class="co"># United Nations Convention on the Law of the Sea (UNCLOS)</span></span>
+<span id="cb10-4"><a href="the-pipeline.html#cb10-4" tabindex="-1"></a>  </span>
+<span id="cb10-5"><a href="the-pipeline.html#cb10-5" tabindex="-1"></a>  <span class="co"># Indicator 14.c.1: Number of countries making progress in ratifying, </span></span>
+<span id="cb10-6"><a href="the-pipeline.html#cb10-6" tabindex="-1"></a>  <span class="co"># accepting and implementing through legal, policy and institutional frameworks, </span></span>
+<span id="cb10-7"><a href="the-pipeline.html#cb10-7" tabindex="-1"></a>  <span class="co"># ocean-related instruments that implement international law, as reflected in </span></span>
+<span id="cb10-8"><a href="the-pipeline.html#cb10-8" tabindex="-1"></a>  <span class="co"># the United Nations Convention on the Law of the Sea, for the conservation and </span></span>
+<span id="cb10-9"><a href="the-pipeline.html#cb10-9" tabindex="-1"></a>  <span class="co"># sustainable use of the oceans and their resources</span></span>
+<span id="cb10-10"><a href="the-pipeline.html#cb10-10" tabindex="-1"></a>  </span>
+<span id="cb10-11"><a href="the-pipeline.html#cb10-11" tabindex="-1"></a>foo <span class="ot">&lt;-</span> indat[SeriesCode <span class="sc">==</span> <span class="st">&quot;ER_UNCLOS_RATACC&quot;</span> <span class="sc">|</span> SeriesCode <span class="sc">==</span> <span class="st">&quot;ER_UNCLOS_IMPLE&quot;</span>]</span>
+<span id="cb10-12"><a href="the-pipeline.html#cb10-12" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="the-pipeline.html#cb10-13" tabindex="-1"></a>foo1 <span class="ot">&lt;-</span> foo[SeriesCode <span class="sc">==</span> <span class="st">&quot;ER_UNCLOS_RATACC&quot;</span>, .SD[<span class="fu">which.max</span>(<span class="fu">as.numeric</span>(TimePeriod))], by <span class="ot">=</span> GeoAreaName]</span>
+<span id="cb10-14"><a href="the-pipeline.html#cb10-14" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="the-pipeline.html#cb10-15" tabindex="-1"></a>foo2<span class="ot">&lt;-</span> foo[SeriesCode <span class="sc">==</span> <span class="st">&quot;ER_UNCLOS_IMPLE&quot;</span>, .SD[<span class="fu">which.max</span>(<span class="fu">as.numeric</span>(TimePeriod))], by <span class="ot">=</span> GeoAreaName] </span>
+<span id="cb10-16"><a href="the-pipeline.html#cb10-16" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="the-pipeline.html#cb10-17" tabindex="-1"></a><span class="co"># Get country polygons</span></span>
+<span id="cb10-18"><a href="the-pipeline.html#cb10-18" tabindex="-1"></a>world <span class="ot">&lt;-</span> rnaturalearth<span class="sc">::</span><span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">&quot;medium&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb10-19"><a href="the-pipeline.html#cb10-19" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="the-pipeline.html#cb10-20" tabindex="-1"></a><span class="fu">setnames</span>(foo1, <span class="st">&quot;GeoAreaName&quot;</span>, <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb10-21"><a href="the-pipeline.html#cb10-21" tabindex="-1"></a><span class="fu">setnames</span>(foo2, <span class="st">&quot;GeoAreaName&quot;</span>, <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb10-22"><a href="the-pipeline.html#cb10-22" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="the-pipeline.html#cb10-23" tabindex="-1"></a>foo2_names <span class="ot">&lt;-</span> <span class="fu">unique</span>(foo2<span class="sc">$</span>name)</span>
+<span id="cb10-24"><a href="the-pipeline.html#cb10-24" tabindex="-1"></a>foo1_names <span class="ot">&lt;-</span> <span class="fu">unique</span>(foo1<span class="sc">$</span>name)</span>
+<span id="cb10-25"><a href="the-pipeline.html#cb10-25" tabindex="-1"></a>world_names <span class="ot">&lt;-</span> <span class="fu">unique</span>(world<span class="sc">$</span>name)</span>
+<span id="cb10-26"><a href="the-pipeline.html#cb10-26" tabindex="-1"></a>names_diff_foo2_world <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(foo2_names, world_names)</span>
+<span id="cb10-27"><a href="the-pipeline.html#cb10-27" tabindex="-1"></a>names_diff_foo1_world <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(foo1_names, world_names)</span>
+<span id="cb10-28"><a href="the-pipeline.html#cb10-28" tabindex="-1"></a> </span>
+<span id="cb10-29"><a href="the-pipeline.html#cb10-29" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Names in foo2 not in world:&quot;</span>)</span>
+<span id="cb10-30"><a href="the-pipeline.html#cb10-30" tabindex="-1"></a><span class="fu">print</span>(names_diff_foo2_world)</span>
+<span id="cb10-31"><a href="the-pipeline.html#cb10-31" tabindex="-1"></a><span class="fu">print</span>(names_diff_foo1_world)</span>
+<span id="cb10-32"><a href="the-pipeline.html#cb10-32" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="the-pipeline.html#cb10-33" tabindex="-1"></a>foo2[name <span class="sc">==</span> <span class="st">&quot;Republic of Korea&quot;</span>, name <span class="sc">:=</span> <span class="st">&quot;South Korea&quot;</span>]</span>
+<span id="cb10-34"><a href="the-pipeline.html#cb10-34" tabindex="-1"></a>foo2[name <span class="sc">==</span> <span class="st">&quot;United Kingdom of Great Britain and Northern Ireland&quot;</span>, name <span class="sc">:=</span> <span class="st">&quot;United Kingdom&quot;</span>]</span>
+<span id="cb10-35"><a href="the-pipeline.html#cb10-35" tabindex="-1"></a>foo2[name <span class="sc">==</span> <span class="st">&quot;Russian Federation&quot;</span>, name <span class="sc">:=</span> <span class="st">&quot;Russia&quot;</span>]</span>
+<span id="cb10-36"><a href="the-pipeline.html#cb10-36" tabindex="-1"></a>foo2[name <span class="sc">==</span> <span class="st">&quot;Venezuela (Bolivarian Republic of)&quot;</span>, name <span class="sc">:=</span> <span class="st">&quot;Venezuela&quot;</span>]</span>
+<span id="cb10-37"><a href="the-pipeline.html#cb10-37" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="the-pipeline.html#cb10-38" tabindex="-1"></a>foo1[name <span class="sc">==</span> <span class="st">&quot;Republic of Korea&quot;</span>, name <span class="sc">:=</span> <span class="st">&quot;South Korea&quot;</span>]</span>
+<span id="cb10-39"><a href="the-pipeline.html#cb10-39" tabindex="-1"></a>foo1[name <span class="sc">==</span> <span class="st">&quot;United Kingdom of Great Britain and Northern Ireland&quot;</span>, name <span class="sc">:=</span> <span class="st">&quot;United Kingdom&quot;</span>]</span>
+<span id="cb10-40"><a href="the-pipeline.html#cb10-40" tabindex="-1"></a>foo1[name <span class="sc">==</span> <span class="st">&quot;Russian Federation&quot;</span>, name <span class="sc">:=</span> <span class="st">&quot;Russia&quot;</span>]</span>
+<span id="cb10-41"><a href="the-pipeline.html#cb10-41" tabindex="-1"></a>foo1[name <span class="sc">==</span> <span class="st">&quot;Venezuela (Bolivarian Republic of)&quot;</span>, name <span class="sc">:=</span> <span class="st">&quot;Venezuela&quot;</span>]</span>
+<span id="cb10-42"><a href="the-pipeline.html#cb10-42" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="the-pipeline.html#cb10-43" tabindex="-1"></a>foo2_imple <span class="ot">&lt;-</span> foo2[SeriesCode <span class="sc">==</span> <span class="st">&quot;ER_UNCLOS_IMPLE&quot;</span>]</span>
+<span id="cb10-44"><a href="the-pipeline.html#cb10-44" tabindex="-1"></a>foo1_rat <span class="ot">&lt;-</span> foo1[SeriesCode <span class="sc">==</span> <span class="st">&quot;ER_UNCLOS_RATACC&quot;</span>]</span>
+<span id="cb10-45"><a href="the-pipeline.html#cb10-45" tabindex="-1"></a></span>
+<span id="cb10-46"><a href="the-pipeline.html#cb10-46" tabindex="-1"></a>foo3 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(foo2_imple, foo1_rat)</span>
+<span id="cb10-47"><a href="the-pipeline.html#cb10-47" tabindex="-1"></a></span>
+<span id="cb10-48"><a href="the-pipeline.html#cb10-48" tabindex="-1"></a>foo3_map <span class="ot">&lt;-</span> <span class="fu">merge</span>(world, foo3, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-49"><a href="the-pipeline.html#cb10-49" tabindex="-1"></a></span>
+<span id="cb10-50"><a href="the-pipeline.html#cb10-50" tabindex="-1"></a><span class="fu">setDT</span>(foo3_map)</span>
+<span id="cb10-51"><a href="the-pipeline.html#cb10-51" tabindex="-1"></a></span>
+<span id="cb10-52"><a href="the-pipeline.html#cb10-52" tabindex="-1"></a><span class="co"># Replace NaN and NA in &#39;Value&#39; with NA for uniform handling</span></span>
+<span id="cb10-53"><a href="the-pipeline.html#cb10-53" tabindex="-1"></a>foo3_map[, Value <span class="sc">:=</span> <span class="fu">fifelse</span>(<span class="fu">is.nan</span>(Value) <span class="sc">|</span> <span class="fu">is.na</span>(Value), <span class="fu">as.numeric</span>(<span class="cn">NA</span>), Value)]</span>
+<span id="cb10-54"><a href="the-pipeline.html#cb10-54" tabindex="-1"></a></span>
+<span id="cb10-55"><a href="the-pipeline.html#cb10-55" tabindex="-1"></a>foo3_map[, ValueFactor <span class="sc">:=</span> <span class="fu">cut</span>(Value, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">69</span>, <span class="dv">79</span>, <span class="dv">89</span>, <span class="dv">100</span>),</span>
+<span id="cb10-56"><a href="the-pipeline.html#cb10-56" tabindex="-1"></a>                              <span class="at">include.lowest =</span> <span class="cn">TRUE</span>, <span class="at">right =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-57"><a href="the-pipeline.html#cb10-57" tabindex="-1"></a>                              <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0-50%&quot;</span>, <span class="st">&quot;51-69%&quot;</span>, <span class="st">&quot;70-79%&quot;</span>, <span class="st">&quot;80-89%&quot;</span>, <span class="st">&quot;90-100%&quot;</span>))]</span>
+<span id="cb10-58"><a href="the-pipeline.html#cb10-58" tabindex="-1"></a></span>
+<span id="cb10-59"><a href="the-pipeline.html#cb10-59" tabindex="-1"></a>foo4 <span class="ot">&lt;-</span> foo3_map[<span class="sc">!</span><span class="fu">is.na</span>(foo3_map<span class="sc">$</span>Value)]</span>
+<span id="cb10-60"><a href="the-pipeline.html#cb10-60" tabindex="-1"></a>foo5 <span class="ot">&lt;-</span> foo4[, <span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;Value&quot;</span>, <span class="st">&quot;Indicator&quot;</span>, <span class="st">&quot;TimePeriod&quot;</span>, <span class="st">&quot;SeriesDescription&quot;</span>), drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb10-61"><a href="the-pipeline.html#cb10-61" tabindex="-1"></a><span class="fu">write.csv</span>(foo5, <span class="st">&quot;data_derived/sdg_14_unclos_map.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-62"><a href="the-pipeline.html#cb10-62" tabindex="-1"></a></span>
+<span id="cb10-63"><a href="the-pipeline.html#cb10-63" tabindex="-1"></a>foo3_map <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(foo3_map)</span>
+<span id="cb10-64"><a href="the-pipeline.html#cb10-64" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="the-pipeline.html#cb10-65" tabindex="-1"></a>equal_earth_projection <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(<span class="st">&quot;+proj=eqearth +datum=WGS84&quot;</span>)</span>
+<span id="cb10-66"><a href="the-pipeline.html#cb10-66" tabindex="-1"></a></span>
+<span id="cb10-67"><a href="the-pipeline.html#cb10-67" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> foo3_map) <span class="sc">+</span></span>
+<span id="cb10-68"><a href="the-pipeline.html#cb10-68" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">fill =</span> ValueFactor), <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb10-69"><a href="the-pipeline.html#cb10-69" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;YlGnBu&quot;</span>, <span class="at">name =</span> <span class="st">&quot;&quot;</span>, <span class="at">na.value =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-70"><a href="the-pipeline.html#cb10-70" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> equal_earth_projection, <span class="at">datum =</span> <span class="cn">NA</span>) <span class="sc">+</span>  <span class="co"># Apply Equal Earth projection</span></span>
+<span id="cb10-71"><a href="the-pipeline.html#cb10-71" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb10-72"><a href="the-pipeline.html#cb10-72" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;white&quot;</span>),</span>
+<span id="cb10-73"><a href="the-pipeline.html#cb10-73" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span></span>
+<span id="cb10-74"><a href="the-pipeline.html#cb10-74" tabindex="-1"></a>  )</span>
+<span id="cb10-75"><a href="the-pipeline.html#cb10-75" tabindex="-1"></a></span>
+<span id="cb10-76"><a href="the-pipeline.html#cb10-76" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;figures_and_tables/fig_map.png&quot;</span>, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span>
+<span id="cb10-77"><a href="the-pipeline.html#cb10-77" tabindex="-1"></a></span>
+<span id="cb10-78"><a href="the-pipeline.html#cb10-78" tabindex="-1"></a>}</span></code></pre></div>
 
 </div>
 </div>

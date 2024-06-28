@@ -14,7 +14,8 @@ editor_options:
 
 ## Essential data management and folder structure
 
-``` sh
+
+```sh
 ├── config.R
 ├── data_derived
 │   ├── Australia_SDG_14.csv
@@ -52,95 +53,32 @@ if (!require(data.table)) {
   install.packages("data.table")
   library(data.table)
 }
-```
 
-```
-## Loading required package: data.table
-```
-
-```r
 if (!require(ggplot2)) {
   install.packages("ggplot2")
   library(ggplot2)
 }
-```
 
-```
-## Loading required package: ggplot2
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 4.2.3
-```
-
-```r
 if (!require(sf)) {
   install.packages("sf")
   library(sf)
 }
-```
 
-```
-## Loading required package: sf
-```
-
-```
-## Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE
-```
-
-```r
 if (!require(RColorBrewer)) {
   install.packages("RColorBrewer")
   library(RColorBrewer)
 }
-```
 
-```
-## Loading required package: RColorBrewer
-```
-
-```r
 if (!require(rnaturalearth)) {
   install.packages("rnaturalearth")
   library(rnaturalearth)
 }
-```
 
-```
-## Loading required package: rnaturalearth
-```
-
-```
-## Warning: package 'rnaturalearth' was built under R version 4.2.3
-```
-
-```r
 if (!require(rnaturalearthdata)) {
   install.packages("rnaturalearthdata")
   library(rnaturalearthdata)
 }
-```
 
-```
-## Loading required package: rnaturalearthdata
-```
-
-```
-## Warning: package 'rnaturalearthdata' was built under R version 4.2.3
-```
-
-```
-## 
-## Attaching package: 'rnaturalearthdata'
-```
-
-```
-## The following object is masked from 'package:rnaturalearth':
-## 
-##     countries110
-```
-
-```r
 ## set folder names
 folder_names <- c("data_derived", "data_provided", "figures_and_tables")
 
@@ -152,15 +90,7 @@ for (folder_name in folder_names) {
     cat("Folder", folder_name, "already exists.\n")
   }
 }
-```
 
-```
-## Folder data_derived created.
-## Folder data_provided already exists.
-## Folder figures_and_tables created.
-```
-
-```r
 ## source functions
 file_list <- list.files(path = "R", pattern = "\\.R$", full.names = TRUE)
 
@@ -172,7 +102,8 @@ for (file in file_list) {
 
 ## run.R
 
-```         
+
+```r
 source("config.R")
 
 ### 1. Download ####
@@ -196,7 +127,8 @@ do_map()
 
 ## do_get_sdg_api
 
-```         
+
+```r
 do_get_sdg_api <- function(
     output = "data_derived/sdg_14.csv"
 ){
@@ -216,7 +148,8 @@ do_get_sdg_api <- function(
 
 ## do_clean
 
-```         
+
+```r
 do_clean <- function() {
   # options(scipen = 1000)
   # Load data
@@ -238,7 +171,8 @@ do_clean <- function() {
 
 ## do_tab_country
 
-```         
+
+```r
 do_tab_country <- function(
     indat,
     country
@@ -291,7 +225,8 @@ return(unq)
 
 ## do_plot
 
-```         
+
+```r
 do_plot <- function(){
 
   # Subset the data to only include rows where the Indicator is "14.7.1"
@@ -352,7 +287,8 @@ return(p)
 
 ## do_map
 
-```         
+
+```r
 do_map <- function()
 {
 # United Nations Convention on the Law of the Sea (UNCLOS)
