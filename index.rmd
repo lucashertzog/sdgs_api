@@ -1,5 +1,5 @@
 ---
-title: "Ocean Development Indicators in the R programming language"
+title: "Sustainable Development Indicators in the R programming language"
 author: "Dr Lucas Hertzog"
 date: "2024-07-01"
 site: bookdown::bookdown_site
