@@ -1,5 +1,5 @@
 ---
-title: "Ocean Development Indicators in the R programming language"
+title: "Sustainable Development Indicators in the R programming language"
 author: "Dr Lucas Hertzog"
 date: "2024-07-01"
 site: bookdown::bookdown_site
@@ -9,7 +9,7 @@ description: "A comprehensive guide on using R to extract, clean, and analyse da
 
 # Welcome
 
-Welcome to the course on Ocean Development Indicators in R. This book provides all the necessary materials and instructions.
+Welcome to the course on Sustainable Development Indicators in R. This book provides all the necessary materials and instructions.
 
 ## Context
 
